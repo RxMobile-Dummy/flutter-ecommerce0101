@@ -1,5 +1,6 @@
 import 'package:amazon_clone/constants/global_variables.dart';
 import 'package:amazon_clone/features/auth/presentation/cubit/auth_manage_cubit.dart';
+import 'package:amazon_clone/features/auth/presentation/cubit/auth_service_cubit.dart';
 import 'package:amazon_clone/features/auth/presentation/screens/auth_screen.dart';
 import 'package:amazon_clone/router.dart';
 import 'package:flutter/material.dart';
@@ -37,10 +38,16 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: GlobalVariables.backgroundColor,
       ),
       onGenerateRoute: (settings) => generateRoute(settings),
-      home: BlocProvider<AuthManageCubit>(
-        create: (context) => sl.sl<AuthManageCubit>()..changeAuth(Auth.signup),
-        child: const AuthScreen(),
-      ),
+      home: MultiBlocProvider(providers: [
+        BlocProvider<AuthServiceCubit>(
+          create: (context) => sl.sl<AuthServiceCubit>(),
+        ),
+        BlocProvider<AuthManageCubit>(
+          create: (context) => sl.sl<AuthManageCubit>()..changeAuth(Auth.signup),
+        ),
+      ], child: const AuthScreen()),
+
+
     );
   }
 }

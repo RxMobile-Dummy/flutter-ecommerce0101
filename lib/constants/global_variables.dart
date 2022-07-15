@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class GlobalVariables {
+  static const uri = 'http://192.168.101.159:3000';
   // COLORS
   static const appBarGradient = LinearGradient(
     colors: [
@@ -58,4 +59,5 @@ class GlobalVariables {
   static const name ="Name";
   static const password ="Password";
   static const signUp ="Sign Up";
+  static const accountSuccess ='Account created! Login with the same credentials!';
 }
