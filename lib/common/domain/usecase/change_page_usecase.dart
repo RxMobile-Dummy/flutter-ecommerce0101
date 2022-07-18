@@ -5,19 +5,18 @@ import 'package:equatable/equatable.dart';
 
 import '../repository/bottom_nav_repository.dart';
 
-
-class ChangePageUseCase extends UseCase<int,Params3>{
+class ChangePageUseCase extends UseCase<int, Params3> {
   final BottomNavRepository bottomNavRepository;
 
   ChangePageUseCase({required this.bottomNavRepository});
 
   @override
   Future<Either<Failure, int>?>? call(Params3 params) {
-   return bottomNavRepository.changePage(params.page);
+    return bottomNavRepository.changePage(params.page);
   }
-
 }
-class Params3 extends Equatable{
+
+class Params3 extends Equatable {
   final int page;
   const Params3({required this.page});
 

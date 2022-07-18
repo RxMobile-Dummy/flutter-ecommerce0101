@@ -20,11 +20,12 @@ Future<void> init() async {
     () => GetProductCategoriesCubit(getProductCategoriesUseCase: admin()),
   );
   // Use cases
-  sl.registerLazySingleton(
-      () => GetProductCategoriesUseCase(getProductCategoriesRepository: admin()));
+  sl.registerLazySingleton(() =>
+      GetProductCategoriesUseCase(getProductCategoriesRepository: admin()));
   // Repository
   sl.registerLazySingleton<GetProductCategoriesRepository>(
-    () => GetProductCategoriesRepositoryImpl(getProductCategoriesDataSource: admin()),
+    () => GetProductCategoriesRepositoryImpl(
+        getProductCategoriesDataSource: admin()),
   );
   // Data sources
   sl.registerLazySingleton<GetProductCategoriesDataSource>(

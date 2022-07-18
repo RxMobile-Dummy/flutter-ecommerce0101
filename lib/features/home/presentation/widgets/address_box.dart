@@ -9,8 +9,8 @@ class AddressBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = (context.read<UserDetailCubit>().state as Authenticated)
-        .userEntity;
+    final user =
+        (context.read<UserDetailCubit>().state as Authenticated).userEntity;
 
     return Container(
       height: 40,

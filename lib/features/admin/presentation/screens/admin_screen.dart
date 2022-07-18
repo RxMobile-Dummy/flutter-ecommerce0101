@@ -7,26 +7,30 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../constants/global_variables.dart';
 
 class AdminScreen extends StatelessWidget {
-   AdminScreen({Key? key}) : super(key: key);
+  AdminScreen({Key? key}) : super(key: key);
 
   List<Widget> pages = [
     const PostsScreen(),
-    const Center(child: Text(""),),
-    const Center(child: Text(""),),
+    const Center(
+      child: Text(""),
+    ),
+    const Center(
+      child: Text(""),
+    ),
 
     // const AnalyticsScreen(),
     // const OrdersScreen(),
   ];
 
-   void updatePage(int page, BuildContext context) {
-     BlocProvider.of<BottomNavCubit>(context).setPage(page);
-   }
+  void updatePage(int page, BuildContext context) {
+    BlocProvider.of<BottomNavCubit>(context).setPage(page);
+  }
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BottomNavCubit, BaseState>(
       builder: (context, state) {
-        if(state is StateOnSuccess){
+        if (state is StateOnSuccess) {
           return Scaffold(
             appBar: PreferredSize(
               preferredSize: const Size.fromHeight(50),
@@ -66,7 +70,7 @@ class AdminScreen extends StatelessWidget {
               unselectedItemColor: GlobalVariables.unselectedNavBarColor,
               backgroundColor: GlobalVariables.backgroundColor,
               iconSize: 28,
-              onTap: (value)=> updatePage(value,context),
+              onTap: (value) => updatePage(value, context),
               items: [
                 // POSTS
                 BottomNavigationBarItem(
@@ -132,7 +136,7 @@ class AdminScreen extends StatelessWidget {
             ),
           );
         }
-       return const SizedBox();
+        return const SizedBox();
       },
     );
   }

@@ -13,17 +13,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../common/presentation/widgets/custom_button.dart';
 import '../../../../common/presentation/widgets/custom_textfield.dart';
 
-
 class AddProductScreen extends StatelessWidget {
-   AddProductScreen({Key? key}) : super(key: key);
+  AddProductScreen({Key? key}) : super(key: key);
 
 //  final AdminServices adminServices = AdminServices();
 
   String category = GlobalVariables.mobiles;
 
   final _addProductFormKey = GlobalKey<FormState>();
-
-
 
   void sellProduct(List<String> images) {
     if (_addProductFormKey.currentState!.validate() && images.isNotEmpty) {
@@ -76,14 +73,13 @@ class AddProductScreen extends StatelessWidget {
                       List<File> list = state.response as List<File>;
                       return CarouselSlider(
                         items: list.map(
-                              (i) {
+                          (i) {
                             return Builder(
-                              builder: (BuildContext context) =>
-                                  Image.file(
-                                    i,
-                                    fit: BoxFit.cover,
-                                    height: 200,
-                                  ),
+                              builder: (BuildContext context) => Image.file(
+                                i,
+                                fit: BoxFit.cover,
+                                height: 200,
+                              ),
                             );
                           },
                         ).toList(),
@@ -94,7 +90,7 @@ class AddProductScreen extends StatelessWidget {
                       );
                     }
                     return GestureDetector(
-                      onTap: ()=> selectImages(context),
+                      onTap: () => selectImages(context),
                       child: DottedBorder(
                         borderType: BorderType.RRect,
                         radius: const Radius.circular(10),
@@ -130,23 +126,30 @@ class AddProductScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 30),
                 CustomTextField(
-                  textEditingController:context.read<GetProductCategoriesCubit>().productNameController,
+                  textEditingController: context
+                      .read<GetProductCategoriesCubit>()
+                      .productNameController,
                   hintText: GlobalVariables.productName,
                 ),
                 const SizedBox(height: 10),
                 CustomTextField(
-                  textEditingController: context.read<GetProductCategoriesCubit>().descriptionController,
+                  textEditingController: context
+                      .read<GetProductCategoriesCubit>()
+                      .descriptionController,
                   hintText: GlobalVariables.description,
                   maxLines: 7,
                 ),
                 const SizedBox(height: 10),
                 CustomTextField(
-                  textEditingController: context.read<GetProductCategoriesCubit>().priceController,
+                  textEditingController:
+                      context.read<GetProductCategoriesCubit>().priceController,
                   hintText: GlobalVariables.price,
                 ),
                 const SizedBox(height: 10),
                 CustomTextField(
-                  textEditingController: context.read<GetProductCategoriesCubit>().quantityController,
+                  textEditingController: context
+                      .read<GetProductCategoriesCubit>()
+                      .quantityController,
                   hintText: GlobalVariables.quantity,
                 ),
                 const SizedBox(height: 10),
@@ -154,14 +157,14 @@ class AddProductScreen extends StatelessWidget {
                   width: double.infinity,
                   child: BlocBuilder<GetProductCategoriesCubit, BaseState>(
                     buildWhen: (previous, current) {
-                      if(current is StateInitial) {
+                      if (current is StateInitial) {
                         return false;
                       } else {
                         return true;
                       }
                     },
                     builder: (context, state) {
-                      if(state is StateOnSuccess){
+                      if (state is StateOnSuccess) {
                         List<String> list = state.response as List<String>;
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -170,20 +173,22 @@ class AddProductScreen extends StatelessWidget {
                               value: category,
                               icon: const Icon(Icons.keyboard_arrow_down),
                               items: list.map((String item) {
-                                      return DropdownMenuItem(
-                                        value: item,
-                                        child: Text(item),
-                                      );
-                                    }).toList(),
+                                return DropdownMenuItem(
+                                  value: item,
+                                  child: Text(item),
+                                );
+                              }).toList(),
                               onChanged: (String? newVal) {
                                 category = newVal!;
-                                BlocProvider.of<GetProductCategoriesCubit>(context).selectProductCategory();
+                                BlocProvider.of<GetProductCategoriesCubit>(
+                                        context)
+                                    .selectProductCategory();
                               },
                             ),
                             const SizedBox(height: 10),
                             CustomButton(
                               text: GlobalVariables.sell,
-                              onTap: ()=> sellProduct(list),
+                              onTap: () => sellProduct(list),
                             ),
                           ],
                         );
@@ -192,7 +197,6 @@ class AddProductScreen extends StatelessWidget {
                     },
                   ),
                 ),
-
               ],
             ),
           ),

@@ -14,8 +14,7 @@ class AuthServiceCubit extends Cubit<BaseState> {
   signUp(String email, String name, String password) {
     //  emit(StateInitial());
     debugPrint("$email $name $password");
-    signUpUseCase.call(Params1(email, name, password))!.then((value)
-    => value!
+    signUpUseCase.call(Params1(email, name, password))!.then((value) => value!
         .fold((l) => emit(StateErrorGeneral(l.message ?? '')),
             (r) => emit(StateOnSuccess(r))));
   }
@@ -23,8 +22,7 @@ class AuthServiceCubit extends Cubit<BaseState> {
   signIn(String email, String password) {
     // emit(StateInitial());
     debugPrint("$email $password");
-    signInUseCase.call(Params2(email, password))!.then((value) =>
-        value!.fold(
+    signInUseCase.call(Params2(email, password))!.then((value) => value!.fold(
         (l) => emit(StateErrorGeneral(l.message ?? '')),
         (r) => emit(Authenticated(r))));
   }

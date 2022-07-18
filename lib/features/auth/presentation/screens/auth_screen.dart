@@ -52,7 +52,8 @@ class _AuthScreenState extends State<AuthScreen> {
                       debugPrint(state.errorMessage);
                       showSnackBar(context, state.errorMessage);
                     } else if (state is Authenticated) {
-                      BlocProvider.of<UserDetailCubit>(context).setData(state.userEntity);
+                      BlocProvider.of<UserDetailCubit>(context)
+                          .setData(state.userEntity);
                       // Navigator.pushNamedAndRemoveUntil(
                       //   context,
                       //   RoutesName.homeScreen,
@@ -64,24 +65,25 @@ class _AuthScreenState extends State<AuthScreen> {
                   }),
                   BlocListener<UserDetailCubit, BaseState>(
                       listener: (context, state) {
-                      if (state is StateErrorGeneral) {
-                          debugPrint("StateErrorGeneral");
-                          debugPrint(state.errorMessage);
-                          showSnackBar(context, state.errorMessage);
-                        } else if (state is Authenticated) {
-                        if(state.userEntity.token!.isNotEmpty){
-                          Navigator.pushNamedAndRemoveUntil(
-                            context,
-                            RoutesName.homeScreen,
-                                (route) => false,
-                          );
-                        }else{
-                          debugPrint("token is ::${state.userEntity.token.toString()}");
-                        }
-                        } else {
-                          debugPrint("problem");
-                        }
-                      })
+                    if (state is StateErrorGeneral) {
+                      debugPrint("StateErrorGeneral");
+                      debugPrint(state.errorMessage);
+                      showSnackBar(context, state.errorMessage);
+                    } else if (state is Authenticated) {
+                      if (state.userEntity.token!.isNotEmpty) {
+                        Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          RoutesName.homeScreen,
+                          (route) => false,
+                        );
+                      } else {
+                        debugPrint(
+                            "token is ::${state.userEntity.token.toString()}");
+                      }
+                    } else {
+                      debugPrint("problem");
+                    }
+                  })
                 ],
                 child: BlocBuilder<AuthManageCubit, BaseState>(
                   builder: (context, state) {

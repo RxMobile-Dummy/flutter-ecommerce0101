@@ -44,7 +44,8 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
             create: (context) => auth.auth<UserDetailCubit>(),
           ),
           BlocProvider<AuthManageCubit>(
-            create: (context) => auth.auth<AuthManageCubit>()..changeAuth(Auth.signup),
+            create: (context) =>
+                auth.auth<AuthManageCubit>()..changeAuth(Auth.signup),
           ),
         ], child: const AuthScreen()),
       );
@@ -62,19 +63,17 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
           BlocProvider<UserDetailCubit>(
             create: (context) => auth.auth<UserDetailCubit>(),
           ),
-        ], child:  BottomBar()),
+        ], child: BottomBar()),
       );
 
     case RoutesName.adminScreen:
       return MaterialPageRoute(
         settings: routeSettings,
         builder: (_) => MultiBlocProvider(providers: [
-
           BlocProvider<BottomNavCubit>(
             create: (context) => sl.sl<BottomNavCubit>()..setPage(0),
           ),
-
-        ], child:  AdminScreen()),
+        ], child: AdminScreen()),
       );
 
     case RoutesName.homeScreen:
@@ -101,10 +100,10 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
             create: (context) => admin.admin<SelectImageCubit>(),
           ),
           BlocProvider<GetProductCategoriesCubit>(
-            create: (context) => admin.admin<GetProductCategoriesCubit>()..getProductCategories(),
+            create: (context) => admin.admin<GetProductCategoriesCubit>()
+              ..getProductCategories(),
           ),
-
-        ], child:  AddProductScreen()),
+        ], child: AddProductScreen()),
       );
 
     default:
@@ -115,5 +114,4 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
         ),
       );
   }
-
 }

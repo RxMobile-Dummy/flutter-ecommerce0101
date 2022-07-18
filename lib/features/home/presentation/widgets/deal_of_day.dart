@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 
 class DealOfDay extends StatefulWidget {
@@ -20,16 +18,16 @@ class _DealOfDayState extends State<DealOfDay> {
   }
 
   void fetchDealOfDay() async {
-  //  product = await homeServices.fetchDealOfDay(context: context);
-  //  setState(() {});
+    //  product = await homeServices.fetchDealOfDay(context: context);
+    //  setState(() {});
   }
 
   void navigateToDetailScreen() {
-  // Navigator.pushNamed(
-  //   context,
-  //   ProductDetailScreen.routeName,
-  //   arguments: product,
-  // );
+    // Navigator.pushNamed(
+    //   context,
+    //   ProductDetailScreen.routeName,
+    //   arguments: product,
+    // );
   }
 
   @override
@@ -37,8 +35,9 @@ class _DealOfDayState extends State<DealOfDay> {
     return /*product == null
         ? const Loader()
         :*/ /*product!.name.isEmpty
-            ?*/ const SizedBox();
-            /*: GestureDetector(
+            ?*/
+        const SizedBox();
+    /*: GestureDetector(
                 onTap: navigateToDetailScreen,
                 child: Column(
                   children: [

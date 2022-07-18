@@ -50,42 +50,42 @@ class GlobalVariables {
     },
   ];
 
-  static const   double bottomBarWidth = 42;
-  static const  double bottomBarBorderWidth = 5;
-  static const noRoutesFound ="Screen doesn't exist";
-  static const welcome ="Welcome";
-  static const createAccount ="Create Account";
-  static const signIn ="Sign-In.";
-  static const signInButton ="Sign In";
-  static const email ="Email";
-  static const name ="Name";
-  static const password ="Password";
-  static const signUp ="Sign Up";
-  static const yourOrders ='Your Orders';
-  static const turnSeller ='Turn Seller';
-  static const wishList ='Your Wish List';
-  static const logOut ='Log Out';
-  static const seeAll ='See all';
-  static const search ='Search Amazon.in';
-  static const dealOfTheDay ='Deal of the day';
-  static const hundred ='\$100';
-  static const vivek ='Vivek';
-  static const admin ='Admin';
-  static const seeAllDeals ='See all deals';
-  static const addProduct ='Add a Product';
-  static const mobiles ='Mobiles';
-  static const essentials ='Essentials';
+  static const double bottomBarWidth = 42;
+  static const double bottomBarBorderWidth = 5;
+  static const noRoutesFound = "Screen doesn't exist";
+  static const welcome = "Welcome";
+  static const createAccount = "Create Account";
+  static const signIn = "Sign-In.";
+  static const signInButton = "Sign In";
+  static const email = "Email";
+  static const name = "Name";
+  static const password = "Password";
+  static const signUp = "Sign Up";
+  static const yourOrders = 'Your Orders';
+  static const turnSeller = 'Turn Seller';
+  static const wishList = 'Your Wish List';
+  static const logOut = 'Log Out';
+  static const seeAll = 'See all';
+  static const search = 'Search Amazon.in';
+  static const dealOfTheDay = 'Deal of the day';
+  static const hundred = '\$100';
+  static const vivek = 'Vivek';
+  static const admin = 'Admin';
+  static const seeAllDeals = 'See all deals';
+  static const addProduct = 'Add a Product';
+  static const mobiles = 'Mobiles';
+  static const essentials = 'Essentials';
   static const appliances = 'Appliances';
   static const books = 'Books';
-  static const fashion =  'Fashion';
-  static const productName =  'Product Name';
-  static const selectProductImage =  'Select Product Images';
-  static const sell =  'Sell';
-  static const description =  'Description';
-  static const price =  'Price';
-  static const quantity =  'Quantity';
-  static const accountSuccess ='Account created! Login with the same credentials!';
+  static const fashion = 'Fashion';
+  static const productName = 'Product Name';
+  static const selectProductImage = 'Select Product Images';
+  static const sell = 'Sell';
+  static const description = 'Description';
+  static const price = 'Price';
+  static const quantity = 'Quantity';
+  static const accountSuccess =
+      'Account created! Login with the same credentials!';
 
-  static const imageAmazon ='assets/images/amazon_in.png';
-
+  static const imageAmazon = 'assets/images/amazon_in.png';
 }

@@ -11,8 +11,7 @@ final sl = GetIt.instance;
 Future<void> init() async {
   // Cubit
   sl.registerFactory(
-    () => BottomNavCubit(changePageUseCase: sl()
-    ),
+    () => BottomNavCubit(changePageUseCase: sl()),
   );
   // Use cases
   sl.registerLazySingleton(() => ChangePageUseCase(bottomNavRepository: sl()));
@@ -20,9 +19,8 @@ Future<void> init() async {
   sl.registerLazySingleton<BottomNavRepository>(
     () => BottomNavRepositoryImpl(bottomNavDataSource: sl()),
   );
- // Data sources
+  // Data sources
   sl.registerLazySingleton<BottomNavDataSource>(
     () => BottomNavDataSourceImpl(),
   );
-
 }

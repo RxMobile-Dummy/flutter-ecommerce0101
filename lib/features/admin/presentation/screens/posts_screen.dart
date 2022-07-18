@@ -1,9 +1,7 @@
-
 import 'package:amazon_clone/constants/global_variables.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../routes_name.dart';
-
 
 class PostsScreen extends StatefulWidget {
   const PostsScreen({Key? key}) : super(key: key);
@@ -13,8 +11,8 @@ class PostsScreen extends StatefulWidget {
 }
 
 class _PostsScreenState extends State<PostsScreen> {
- // List<Product>? products;
- // final AdminServices adminServices = AdminServices();
+  // List<Product>? products;
+  // final AdminServices adminServices = AdminServices();
 
   @override
   void initState() {
@@ -23,8 +21,8 @@ class _PostsScreenState extends State<PostsScreen> {
   }
 
   fetchAllProducts() async {
-   // products = await adminServices.fetchAllProducts(context);
-  //  setState(() {});
+    // products = await adminServices.fetchAllProducts(context);
+    //  setState(() {});
   }
 
   /*void deleteProduct(Product product, int index) {
@@ -39,15 +37,16 @@ class _PostsScreenState extends State<PostsScreen> {
   }*/
 
   void navigateToAddProduct() {
-  Navigator.pushNamed(context, RoutesName.addProduct);
+    Navigator.pushNamed(context, RoutesName.addProduct);
   }
 
   @override
   Widget build(BuildContext context) {
     return /*products == null
         ? const Loader()
-        :*/ Scaffold(
-           /* body: GridView.builder(
+        :*/
+        Scaffold(
+      /* body: GridView.builder(
               itemCount: products!.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2),
@@ -83,13 +82,12 @@ class _PostsScreenState extends State<PostsScreen> {
                 );
               },
             ),*/
-            floatingActionButton: FloatingActionButton(
-              onPressed: navigateToAddProduct,
-              tooltip: GlobalVariables.addProduct,
-              child: const Icon(Icons.add),
-            ),
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.centerFloat,
-          );
+      floatingActionButton: FloatingActionButton(
+        onPressed: navigateToAddProduct,
+        tooltip: GlobalVariables.addProduct,
+        child: const Icon(Icons.add),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+    );
   }
 }

@@ -6,18 +6,18 @@ import 'package:equatable/equatable.dart';
 import '../../data/datasource/auth_manage_datasource_impl.dart';
 import '../repository/auth_manage_repository.dart';
 
-class AuthManageUseCase extends UseCase<Auth,Params>{
+class AuthManageUseCase extends UseCase<Auth, Params> {
   final AuthManageRepository authManageRepository;
 
   AuthManageUseCase({required this.authManageRepository});
 
   @override
   Future<Either<Failure, Auth>?>? call(Params params) {
-   return authManageRepository.authManage(params.auth);
+    return authManageRepository.authManage(params.auth);
   }
-
 }
-class Params extends Equatable{
+
+class Params extends Equatable {
   final Auth auth;
   const Params({required this.auth});
 

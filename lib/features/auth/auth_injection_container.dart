@@ -21,37 +21,36 @@ final auth = GetIt.instance;
 Future<void> init() async {
   // Cubit
   auth.registerFactory(
-    () => AuthManageCubit(authManageUseCase: auth()
-    ),
+    () => AuthManageCubit(authManageUseCase: auth()),
   );
   auth.registerFactory(
-        () => AuthServiceCubit(signUpUseCase: auth(), signInUseCase: auth()
-    ),
+    () => AuthServiceCubit(signUpUseCase: auth(), signInUseCase: auth()),
   );
   auth.registerLazySingleton(
-        () => UserDetailCubit(getUserDataUseCase: auth()
-    ),
+    () => UserDetailCubit(getUserDataUseCase: auth()),
   );
 
-
-
   // Use cases
-  auth.registerLazySingleton(() => AuthManageUseCase(authManageRepository: auth()));
-  auth.registerLazySingleton(() => SignUpUseCase(authServiceRepository: auth()));
-  auth.registerLazySingleton(() => SignInUseCase(authServiceRepository: auth()));
-  auth.registerLazySingleton(() => GetUserDataUseCase(authServiceRepository: auth()));
+  auth.registerLazySingleton(
+      () => AuthManageUseCase(authManageRepository: auth()));
+  auth.registerLazySingleton(
+      () => SignUpUseCase(authServiceRepository: auth()));
+  auth.registerLazySingleton(
+      () => SignInUseCase(authServiceRepository: auth()));
+  auth.registerLazySingleton(
+      () => GetUserDataUseCase(authServiceRepository: auth()));
   // Repository
   auth.registerLazySingleton<AuthManageRepository>(
     () => AuthManageRepositoryImpl(authManageDataSource: auth()),
   );
   auth.registerLazySingleton<AuthServiceRepository>(
-        () => AuthServiceRepositoryImpl(authServiceDataSource: auth()),
+    () => AuthServiceRepositoryImpl(authServiceDataSource: auth()),
   );
   // Data sources
   auth.registerLazySingleton<AuthManageDataSource>(
     () => AuthManageDataSourceImpl(),
   );
   auth.registerLazySingleton<AuthServiceDataSource>(
-        () => AuthServiceDataSourceImpl(),
+    () => AuthServiceDataSourceImpl(),
   );
 }

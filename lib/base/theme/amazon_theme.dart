@@ -1,6 +1,3 @@
-
-
-
 import 'package:flutter/material.dart';
 
 /// This file defines the themes to be used in rest of the app.
@@ -12,29 +9,35 @@ class Themes {
     return ThemeData(
       textTheme: const TextTheme(
         bodyText1: TextStyle(
-            color: Color(0xff666666),
-            fontSize: 16.0,
-            fontWeight: FontWeight.w400,),
+          color: Color(0xff666666),
+          fontSize: 16.0,
+          fontWeight: FontWeight.w400,
+        ),
         subtitle1: TextStyle(
-            color: kColorAccent,
-            fontSize: 16.0,
-            fontWeight: FontWeight.w700,),
+          color: kColorAccent,
+          fontSize: 16.0,
+          fontWeight: FontWeight.w700,
+        ),
         subtitle2: TextStyle(
-            color: Color(0xff333333),
-            fontSize: 16.0,
-            fontWeight: FontWeight.w700,),
+          color: Color(0xff333333),
+          fontSize: 16.0,
+          fontWeight: FontWeight.w700,
+        ),
         overline: TextStyle(
-            color: Color(0xff999999),
-            fontSize: 16.0,
-            fontWeight: FontWeight.w400,),
+          color: Color(0xff999999),
+          fontSize: 16.0,
+          fontWeight: FontWeight.w400,
+        ),
         caption: TextStyle(
-            color: kColorAccent,
-            fontSize: 14.0,
-            fontWeight: FontWeight.w700,),
+          color: kColorAccent,
+          fontSize: 14.0,
+          fontWeight: FontWeight.w700,
+        ),
         bodyText2: TextStyle(
-            color: Color(0xff666666),
-            fontSize: 16.0,
-            fontWeight: FontWeight.w700,),
+          color: Color(0xff666666),
+          fontSize: 16.0,
+          fontWeight: FontWeight.w700,
+        ),
         headline1: TextStyle(
           color: Color(0xffE32727),
           fontSize: 32,
@@ -67,7 +70,6 @@ class Themes {
           color: Colors.white,
         ),
       ),
-
     );
   }
 
@@ -219,6 +221,5 @@ class Themes {
     );
   }
 }
-
 
 enum ThemeColor { light, dark }

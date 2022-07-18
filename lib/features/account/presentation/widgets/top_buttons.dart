@@ -24,11 +24,9 @@ class TopButtons extends StatelessWidget {
         const SizedBox(height: 10),
         Row(
           children: [
-            AccountButton(
-              text: GlobalVariables.logOut,
-              onTap: () => {}
-                  //AccountServices().logOut(context),
-            ),
+            AccountButton(text: GlobalVariables.logOut, onTap: () => {}
+                //AccountServices().logOut(context),
+                ),
             AccountButton(
               text: GlobalVariables.wishList,
               onTap: () {},

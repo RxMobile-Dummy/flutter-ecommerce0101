@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../../../../constants/global_variables.dart';
@@ -93,7 +92,7 @@ class HomeScreen extends StatelessWidget {
             TopCategories(),
             SizedBox(height: 10),
             CarouselImage(),
-          //  DealOfDay(),
+            //  DealOfDay(),
           ],
         ),
       ),

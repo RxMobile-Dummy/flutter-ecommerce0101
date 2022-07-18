@@ -16,19 +16,20 @@ class GetProductCategoriesCubit extends Cubit<BaseState> {
   GetProductCategoriesCubit({required this.getProductCategoriesUseCase})
       : super(StateInitial());
 
-
   getProductCategories() {
-    getProductCategoriesUseCase.call(NoParams())!.then((value) =>
-        value!.fold((l) => null, (r) {
-          _list =r;
-          emit(StateOnSuccess<List<String>>(r));
-        }));
+    getProductCategoriesUseCase
+        .call(NoParams())!
+        .then((value) => value!.fold((l) => null, (r) {
+              _list = r;
+              emit(StateOnSuccess<List<String>>(r));
+            }));
   }
 
   selectProductCategory() {
     emit(StateInitial());
     emit(StateOnSuccess<List<String>>(_list));
   }
+
   @override
   Future<void> close() {
     productNameController.dispose();

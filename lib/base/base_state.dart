@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 
 import '../features/auth/domain/entity/user_entity.dart';
 
-abstract class BaseState extends Equatable{}
+abstract class BaseState extends Equatable {}
 
 class Uninitialized extends BaseState {
   @override
@@ -55,7 +55,7 @@ class StateSearchResult<T> extends BaseState {
   StateSearchResult(this.response);
 
   @override
-  List<Object?> get props =>[response];
+  List<Object?> get props => [response];
 }
 
 class StateInternetError extends BaseState {
@@ -88,7 +88,7 @@ class StateReorderSuccess<T> extends BaseState {
   StateReorderSuccess(this.response, {this.updatedIndex});
 
   @override
-  List<Object?> get props => [response,updatedIndex];
+  List<Object?> get props => [response, updatedIndex];
 }
 
 class StateOnResponseSuccess<T> extends BaseState {
@@ -115,7 +115,7 @@ class ValidationError extends BaseState {
   ValidationError(this.errorMessage);
 
   @override
-  List<Object?> get props =>[errorMessage];
+  List<Object?> get props => [errorMessage];
 }
 
 class StateErrorGeneral extends BaseState {
@@ -126,6 +126,7 @@ class StateErrorGeneral extends BaseState {
   @override
   List<Object?> get props => [errorMessage];
 }
+
 class StateErrorListGeneral extends BaseState {
   final List<String> errorMessage;
 
@@ -190,6 +191,7 @@ class StatePaginationServerError<T> extends BaseState {
   @override
   List<Object?> get props => [response];
 }
+
 class FailErrorMessageState extends BaseState implements Equatable {
   final String errorMessage;
 

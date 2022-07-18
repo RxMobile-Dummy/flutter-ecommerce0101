@@ -4,7 +4,8 @@ import 'package:dartz/dartz.dart';
 import '../../../../constants/global_variables.dart';
 import 'get_product_categories_datasource.dart';
 
- class GetProductCategoriesDataSourceImpl extends GetProductCategoriesDataSource{
+class GetProductCategoriesDataSourceImpl
+    extends GetProductCategoriesDataSource {
   @override
   Future<Either<Failure, List<String>>> getProductCategories() {
     List<String> productCategories = [
@@ -16,5 +17,4 @@ import 'get_product_categories_datasource.dart';
     ];
     return Future.value(Right(productCategories));
   }
-
 }

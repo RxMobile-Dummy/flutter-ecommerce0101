@@ -15,5 +15,4 @@ class GetProductCategoriesRepositoryImpl
   @override
   Future<Either<Failure, List<String>>> getProductCategories() async =>
       await getProductCategoriesDataSource.getProductCategories();
-
- }
+}

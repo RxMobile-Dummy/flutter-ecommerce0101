@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,8 +10,8 @@ class BelowAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = (context.read<UserDetailCubit>().state as Authenticated)
-        .userEntity;
+    final user =
+        (context.read<UserDetailCubit>().state as Authenticated).userEntity;
 
     return Container(
       decoration: const BoxDecoration(

@@ -14,7 +14,8 @@ class UserDetailCubit extends Cubit<BaseState> {
         (l) => emit(StateErrorGeneral(l.message ?? '')),
         (r) => emit(Authenticated(r))));
   }
-  setData(UserEntity userEntity){
+
+  setData(UserEntity userEntity) {
     emit(Authenticated(userEntity));
   }
 }

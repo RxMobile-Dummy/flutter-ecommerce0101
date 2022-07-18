@@ -12,5 +12,5 @@ class GetUserDataUseCase extends UseCase<UserEntity, NoParams> {
 
   @override
   Future<Either<Failure, UserEntity>?>? call(NoParams params) async =>
-      await  authServiceRepository.getUserData();
+      await authServiceRepository.getUserData();
 }

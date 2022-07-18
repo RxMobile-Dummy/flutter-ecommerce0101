@@ -12,16 +12,15 @@ class SignInUseCase extends UseCase<UserEntity, Params2> {
 
   @override
   Future<Either<Failure, UserEntity>?>? call(Params2 params) async =>
-    await  authServiceRepository.signInUser(
-          params.email, params.password);
+      await authServiceRepository.signInUser(params.email, params.password);
 }
 
-class Params2 extends Equatable{
+class Params2 extends Equatable {
   final String email;
   final String password;
 
   const Params2(this.email, this.password);
 
   @override
-  List<Object?> get props => [email,password];
+  List<Object?> get props => [email, password];
 }

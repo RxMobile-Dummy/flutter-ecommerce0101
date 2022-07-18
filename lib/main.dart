@@ -1,24 +1,26 @@
-
-
 import 'dart:io';
 
 import 'package:amazon_clone/constants/global_variables.dart';
 import 'package:amazon_clone/router.dart';
 import 'package:flutter/material.dart';
-import 'package:amazon_clone/features/auth/auth_injection_container.dart' as auth;
-import 'package:amazon_clone/features/admin/admin_injection_container.dart' as admin;
+import 'package:amazon_clone/features/auth/auth_injection_container.dart'
+    as auth;
+import 'package:amazon_clone/features/admin/admin_injection_container.dart'
+    as admin;
 import 'package:amazon_clone/injection_container.dart' as sl;
 
 //this is for resolved handshake error, don't use in production
-class MyHttpOverrides extends HttpOverrides{
+class MyHttpOverrides extends HttpOverrides {
   @override
-  HttpClient createHttpClient(SecurityContext? context){
+  HttpClient createHttpClient(SecurityContext? context) {
     return super.createHttpClient(context)
-      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
   }
 }
+
 Future<void> main() async {
-  HttpOverrides.global =  MyHttpOverrides();
+  HttpOverrides.global = MyHttpOverrides();
 
   WidgetsFlutterBinding.ensureInitialized();
   await auth.init();

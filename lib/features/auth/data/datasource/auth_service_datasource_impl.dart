@@ -106,7 +106,7 @@ class AuthServiceDataSourceImpl extends AuthServiceDataSource {
           },
         );
         return Right(UserModel.fromJson(userRes.body));
-      }else{
+      } else {
         debugPrint(response.toString());
         return Left(ServerFailure(message: response.toString()));
       }

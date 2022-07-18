@@ -15,57 +15,51 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
-            child: MultiBlocListener(
-              listeners: [
-                BlocListener<UserDetailCubit, BaseState>(
-                    listener: (context, state) {
-                      if (state is StateErrorGeneral) {
-                        debugPrint("StateErrorGeneral");
-                        debugPrint(state.errorMessage);
-                        showSnackBar(context, state.errorMessage);
-                      } else if (state is Authenticated) {
-                        if(state.userEntity.token!.isNotEmpty){
-                          if(state.userEntity.type == "user"){
-                            Timer(const Duration(seconds: 3), () {
-                              Navigator.pushNamedAndRemoveUntil(
-                                context,
-                                RoutesName.actualHome,
-                                    (route) => false,
-                              );
-                            });
-                          }else{
-                            Timer(const Duration(seconds: 3), () {
-                              Navigator.pushNamedAndRemoveUntil(
-                                context,
-                                RoutesName.adminScreen,
-                                    (route) => false,
-                              );
-                            });
-                          }
-
-
-                        }else{
-                          Timer(const Duration(seconds: 3), () {
-                          Navigator.pushNamedAndRemoveUntil(
-                            context,
-                            RoutesName.authScreen,
-                                (route) => false,
-                          );
-                          });
-                          debugPrint("token is ::${state.userEntity.token.toString()}");
-                        }
-                      } else {
-                        debugPrint("problem");
-                      }
-                    })
-              ],
-              child: const Center(
-              child:Text("HI"))
-                  // child: Image.asset(
-                  //   "",
-                  //   height: 150.0,
-                  //   width: 114.42,
-                  // )),
-            )));
+            child: MultiBlocListener(listeners: [
+      BlocListener<UserDetailCubit, BaseState>(listener: (context, state) {
+        if (state is StateErrorGeneral) {
+          debugPrint("StateErrorGeneral");
+          debugPrint(state.errorMessage);
+          showSnackBar(context, state.errorMessage);
+        } else if (state is Authenticated) {
+          if (state.userEntity.token!.isNotEmpty) {
+            if (state.userEntity.type == "user") {
+              Timer(const Duration(seconds: 3), () {
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  RoutesName.actualHome,
+                  (route) => false,
+                );
+              });
+            } else {
+              Timer(const Duration(seconds: 3), () {
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  RoutesName.adminScreen,
+                  (route) => false,
+                );
+              });
+            }
+          } else {
+            Timer(const Duration(seconds: 3), () {
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                RoutesName.authScreen,
+                (route) => false,
+              );
+            });
+            debugPrint("token is ::${state.userEntity.token.toString()}");
+          }
+        } else {
+          debugPrint("problem");
+        }
+      })
+    ], child: const Center(child: Text("HI"))
+                // child: Image.asset(
+                //   "",
+                //   height: 150.0,
+                //   width: 114.42,
+                // )),
+                )));
   }
 }

@@ -11,5 +11,5 @@ class BottomNavRepositoryImpl extends BottomNavRepository {
 
   @override
   Future<Either<Failure, int>> changePage(int page) async =>
-     await bottomNavDataSource.changePage(page);
+      await bottomNavDataSource.changePage(page);
 }
