@@ -6,137 +6,68 @@ import 'package:flutter/material.dart';
 /// This file defines the themes to be used in rest of the app.
 /// Any user defined theme must always return the type [ThemeData]
 
-/*
 class Themes {
   /// Light theme
   static ThemeData get lightTheme {
     return ThemeData(
-      brightness: Brightness.light,
-      primaryColor: kColorAccent,
-      primaryColorDark: const Color(0xff128fc4),
-      primaryColorLight: const Color(0xff33a9da),
-      disabledColor: const Color(0x66666680),
-      dividerColor: const Color(0xFF666680),
-      hintColor: const Color(0xff666666),
-      focusColor: const Color(0xff000000),
-      selectedRowColor: const Color(0xff28364C),
-      backgroundColor: const Color(0xffF9F9F9),
-      cardColor: Colors.white,
-      errorColor: const Color(0xffE32727),
-      scaffoldBackgroundColor: Colors.white,
-      indicatorColor: kColorAccent,
-      bottomSheetTheme: const BottomSheetThemeData(
-        backgroundColor: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(25),
-            topRight: Radius.circular(25),
-          ),
-        ),
-      ),
-      //dialogBackgroundColor: kAppAdviceTileBgColor,
-      highlightColor: const Color(0xff8D9BAE),
-      toggleableActiveColor: const Color(0xff58585A),
-      canvasColor: Colors.transparent,
       textTheme: const TextTheme(
         bodyText1: TextStyle(
             color: Color(0xff666666),
             fontSize: 16.0,
-            fontWeight: FontWeight.w400,
-            fontFamily: Strings.kTextCentury),
+            fontWeight: FontWeight.w400,),
         subtitle1: TextStyle(
             color: kColorAccent,
             fontSize: 16.0,
-            fontWeight: FontWeight.w700,
-            fontFamily: Strings.kTextCentury),
+            fontWeight: FontWeight.w700,),
         subtitle2: TextStyle(
             color: Color(0xff333333),
             fontSize: 16.0,
-            fontWeight: FontWeight.w700,
-            fontFamily: Strings.kTextCentury),
+            fontWeight: FontWeight.w700,),
         overline: TextStyle(
             color: Color(0xff999999),
             fontSize: 16.0,
-            fontWeight: FontWeight.w400,
-            fontFamily: Strings.kTextCentury),
+            fontWeight: FontWeight.w400,),
         caption: TextStyle(
             color: kColorAccent,
             fontSize: 14.0,
-            fontWeight: FontWeight.w700,
-            fontFamily: Strings.kTextCentury),
+            fontWeight: FontWeight.w700,),
         bodyText2: TextStyle(
             color: Color(0xff666666),
             fontSize: 16.0,
-            fontWeight: FontWeight.w700,
-            fontFamily: Strings.kTextCentury),
+            fontWeight: FontWeight.w700,),
         headline1: TextStyle(
           color: Color(0xffE32727),
           fontSize: 32,
           fontWeight: FontWeight.w700,
-          fontFamily: Strings.kTextCentury,
         ),
         headline2: TextStyle(
           color: kColorAccent,
           fontSize: 26,
           letterSpacing: 0,
           fontWeight: FontWeight.w700,
-          fontFamily: Strings.kTextCentury,
         ),
         headline3: TextStyle(
           color: kColorAccent,
           fontSize: 18,
           fontWeight: FontWeight.w700,
-          fontFamily: Strings.kTextCentury,
         ),
         headline4: TextStyle(
           color: Color(0xffE32727),
           fontSize: 18.0,
           fontWeight: FontWeight.w700,
-          fontFamily: Strings.kTextCentury,
         ),
         headline5: TextStyle(
           color: Color(0xffE32727),
           fontSize: 26.0,
           fontWeight: FontWeight.w700,
-          fontFamily: Strings.kTextCentury,
         ),
         button: TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w700,
-          fontFamily: Strings.kTextCentury,
           color: Colors.white,
         ),
       ),
-      tabBarTheme: const TabBarTheme(
-        labelColor: kColorAccent,
-        unselectedLabelColor: Color(0xffA3A3A3),
-        labelPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-        labelStyle: TextStyle(
-          fontSize: 14,
-          fontWeight: FontWeight.w800,
-        ),
-        unselectedLabelStyle: TextStyle(
-          fontSize: 14,
-          fontWeight: FontWeight.w800,
-        ),
-      ),
-      colorScheme:  ColorScheme(
-        brightness: Brightness.light,
-        primary: kColorAccent,
-        onPrimary: Color(0xffC4C4C4),
-        primaryContainer: Color(0xFF061FFF),
-        secondary: Color(0xff1b202d),
-        // Gradient bg start
-        onSecondary: Color(0xff1b2231),
-        secondaryContainer: Color(0xff293656),
-        // Gradient bg end
-        surface: Color(0xffF2F3F5),
-        onSurface: Color(0xff8290A0),
-        background: Color(0xff000000),
-        onBackground: Color(0xff111A27),
-        error: Color(0xffD42E20),
-        onError: Colors.red,
-      ),
+
     );
   }
 
@@ -248,6 +179,7 @@ class Themes {
   /// these colors are added for the testing purpose for design changes for luke
   /// we will remove this belo colors once we finalise the design & colors
   static const Color kAppBackgroundColor = Color(0xFF171717);
+  static const Color kColorAccent = Colors.black12;
   static const Color kAppAdviceTileBgColor = Color(0xFF232227);
   static const Color kIconGray = Color(0xFFB9BCBE);
   static const Color kFontGray = Color(0xffE32727);
@@ -290,4 +222,3 @@ class Themes {
 
 
 enum ThemeColor { light, dark }
-*/

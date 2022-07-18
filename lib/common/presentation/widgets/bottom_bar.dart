@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../constants/global_variables.dart';
+import '../../../features/account/presentation/screens/account_screen.dart';
 import '../../../features/home/screens/home_screen.dart';
 import '../cubit/bottom_nav_cubit.dart';
 
@@ -15,9 +16,8 @@ class BottomBar extends StatelessWidget {
 
   List<Widget> pages = [
     const HomeScreen(),
-    const Center(child: Text('Account')),
+    const AccountScreen(),
     const Center(child: Text('Cart')),
-    ///const AccountScreen(),
     //const CartScreen(),
   ];
 
