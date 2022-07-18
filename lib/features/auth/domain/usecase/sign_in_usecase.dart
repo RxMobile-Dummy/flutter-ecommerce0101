@@ -11,8 +11,8 @@ class SignInUseCase extends UseCase<UserEntity, Params2> {
   SignInUseCase({required this.authServiceRepository});
 
   @override
-  Future<Either<Failure, UserEntity>?>? call(Params2 params) =>
-      authServiceRepository.signInUser(
+  Future<Either<Failure, UserEntity>?>? call(Params2 params) async =>
+    await  authServiceRepository.signInUser(
           params.email, params.password);
 }
 

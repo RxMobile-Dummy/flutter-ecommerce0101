@@ -54,8 +54,6 @@ class _AuthScreenState extends State<AuthScreen> {
                   RoutesName.homeScreen,
                       (route) => false,
                 );
-            }else if(state is Unauthenticated){
-
             }else{
                 debugPrint("problem");
               }
@@ -185,8 +183,8 @@ class _AuthScreenState extends State<AuthScreen> {
                                     if(_signInFormKey.currentState!.validate()){
                                       BlocProvider.of<AuthServiceCubit>(context)
                                           .signIn(
-                                          _emailController.text,
-                                          _nameController.text);
+                                          _emailController.text.trim(),
+                                          _passwordController.text.trim());
                                     }else{
                                       debugPrint("else");
                                     }
