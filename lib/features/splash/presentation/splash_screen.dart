@@ -28,7 +28,7 @@ class SplashScreen extends StatelessWidget {
                           Timer(const Duration(seconds: 3), () {
                             Navigator.pushNamedAndRemoveUntil(
                               context,
-                              RoutesName.homeScreen,
+                              RoutesName.actualHome,
                                   (route) => false,
                             );
                           });
@@ -48,7 +48,7 @@ class SplashScreen extends StatelessWidget {
                       }
                     })
               ],
-              child: Center(
+              child: const Center(
               child:Text("HI"))
                   // child: Image.asset(
                   //   "",

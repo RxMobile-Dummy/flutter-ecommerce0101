@@ -50,6 +50,8 @@ class GlobalVariables {
     },
   ];
 
+  static const   double bottomBarWidth = 42;
+  static const  double bottomBarBorderWidth = 5;
   static const noRoutesFound ="Screen doesn't exist";
   static const welcome ="Welcome";
   static const createAccount ="Create Account";

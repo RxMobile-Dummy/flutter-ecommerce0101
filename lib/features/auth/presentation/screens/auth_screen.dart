@@ -5,8 +5,8 @@ import 'package:amazon_clone/features/auth/presentation/cubit/auth_service_cubit
 import 'package:amazon_clone/features/auth/presentation/cubit/user_detail_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../common/widgets/custom_button.dart';
-import '../../../../common/widgets/custom_textfield.dart';
+import '../../../../common/presentation/widgets/custom_button.dart';
+import '../../../../common/presentation/widgets/custom_textfield.dart';
 import '../../../../constants/utils.dart';
 import '../../../../routes_name.dart';
 import '../../data/datasource/auth_manage_datasource_impl.dart';

@@ -2,10 +2,12 @@
 import 'package:amazon_clone/constants/global_variables.dart';
 import 'package:amazon_clone/router.dart';
 import 'package:flutter/material.dart';
-import 'package:amazon_clone/features/injection_container.dart' as sl;
+import 'package:amazon_clone/features/auth/auth_injection_container.dart' as auth;
+import 'package:amazon_clone/injection_container.dart' as sl;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await auth.init();
   await sl.init();
   runApp(const MyApp());
 }
