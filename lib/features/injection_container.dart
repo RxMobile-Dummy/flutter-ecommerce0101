@@ -10,9 +10,11 @@ import 'auth/data/repository/auth_service_repository_impl.dart';
 import 'auth/domain/repository/auth_manage_repository.dart';
 import 'auth/domain/repository/auth_service_repository.dart';
 import 'auth/domain/usecase/auth_manage_usecase.dart';
+import 'auth/domain/usecase/get_user_data_usecase.dart';
 import 'auth/domain/usecase/sign_in_usecase.dart';
 import 'auth/domain/usecase/sign_up_usecase.dart';
 import 'auth/presentation/cubit/auth_manage_cubit.dart';
+import 'auth/presentation/cubit/user_detail_cubit.dart';
 
 final sl = GetIt.instance;
 
@@ -22,8 +24,12 @@ Future<void> init() async {
     () => AuthManageCubit(authManageUseCase: sl()
     ),
   );
-  sl.registerLazySingleton(
+  sl.registerFactory(
         () => AuthServiceCubit(signUpUseCase: sl(), signInUseCase: sl()
+    ),
+  );
+  sl.registerLazySingleton(
+        () => UserDetailCubit(getUserDataUseCase: sl()
     ),
   );
 
@@ -31,6 +37,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => AuthManageUseCase(authManageRepository: sl()));
   sl.registerLazySingleton(() => SignUpUseCase(authServiceRepository: sl()));
   sl.registerLazySingleton(() => SignInUseCase(authServiceRepository: sl()));
+  sl.registerLazySingleton(() => GetUserDataUseCase(authServiceRepository: sl()));
   // Repository
   sl.registerLazySingleton<AuthManageRepository>(
     () => AuthManageRepositoryImpl(authManageDataSource: sl()),

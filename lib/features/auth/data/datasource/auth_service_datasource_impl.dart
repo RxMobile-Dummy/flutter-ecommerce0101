@@ -76,4 +76,43 @@ class AuthServiceDataSourceImpl extends AuthServiceDataSource {
       return Left(ServerFailure(message: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, UserModel>> getUserData() async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String? token = prefs.getString('x-auth-token');
+
+      if (token == null) {
+        prefs.setString('x-auth-token', '');
+      }
+
+      var tokenRes = await http.post(
+        Uri.parse('${GlobalVariables.uri}/tokenIsValid'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'x-auth-token': token!
+        },
+      );
+
+      var response = jsonDecode(tokenRes.body);
+
+      if (response == true) {
+        http.Response userRes = await http.get(
+          Uri.parse('${GlobalVariables.uri}/'),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+            'x-auth-token': token
+          },
+        );
+        return Right(UserModel.fromJson(userRes.body));
+      }else{
+        debugPrint(response.toString());
+        return Left(ServerFailure(message: response.toString()));
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+      return Left(ServerFailure(message: e.toString()));
+    }
+  }
 }

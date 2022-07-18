@@ -9,4 +9,6 @@ abstract class AuthServiceDataSource {
       String email, String password, String name);
   Future<Either<Failure, UserModel>> signInUser(
       String email, String password);
+
+  Future<Either<Failure,UserModel>> getUserData();
 }

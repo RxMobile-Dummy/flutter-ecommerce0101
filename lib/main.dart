@@ -1,13 +1,8 @@
+
 import 'package:amazon_clone/constants/global_variables.dart';
-import 'package:amazon_clone/features/auth/presentation/cubit/auth_manage_cubit.dart';
-import 'package:amazon_clone/features/auth/presentation/cubit/auth_service_cubit.dart';
-import 'package:amazon_clone/features/auth/presentation/screens/auth_screen.dart';
 import 'package:amazon_clone/router.dart';
 import 'package:flutter/material.dart';
 import 'package:amazon_clone/features/injection_container.dart' as sl;
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'features/auth/data/datasource/auth_manage_datasource_impl.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,16 +33,13 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: GlobalVariables.backgroundColor,
       ),
       onGenerateRoute: (settings) => generateRoute(settings),
-      home: MultiBlocProvider(providers: [
-        BlocProvider<AuthServiceCubit>(
-          create: (context) => sl.sl<AuthServiceCubit>(),
-        ),
-        BlocProvider<AuthManageCubit>(
-          create: (context) => sl.sl<AuthManageCubit>()..changeAuth(Auth.signup),
-        ),
-      ], child: const AuthScreen()),
-
-
+      builder: (context, child) {
+        return GestureDetector(
+            onTap: () {
+              FocusScope.of(context).requestFocus(FocusNode());
+            },
+            child: child);
+      },
     );
   }
 }

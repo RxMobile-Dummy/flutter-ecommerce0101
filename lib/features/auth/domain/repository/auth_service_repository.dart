@@ -8,4 +8,6 @@ abstract class AuthServiceRepository {
 
   Future<Either<Failure, String>> signUpUser(
       String email, String password, String name);
+
+  Future<Either<Failure,UserEntity>> getUserData();
 }
