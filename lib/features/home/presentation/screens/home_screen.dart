@@ -1,17 +1,17 @@
-import 'package:amazon_clone/base/base_state.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../constants/global_variables.dart';
-import '../../auth/presentation/cubit/user_detail_cubit.dart';
+import 'package:flutter/material.dart';
+
+import '../../../../constants/global_variables.dart';
+import '../widgets/address_box.dart';
+import '../widgets/carousel_image.dart';
+import '../widgets/top_categories.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    void navigateToSearchScreen(String query) {
-    }
+    void navigateToSearchScreen(String query) {}
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
@@ -85,10 +85,22 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Center(
+      body: SingleChildScrollView(
+        child: Column(
+          children: const [
+            AddressBox(),
+            SizedBox(height: 10),
+            TopCategories(),
+            SizedBox(height: 10),
+            CarouselImage(),
+          //  DealOfDay(),
+          ],
+        ),
+      ),
+      /*Center(
           child: Text((context.read<UserDetailCubit>().state as Authenticated)
               .userEntity
-              .name!)),
+              .name!)),*/
     );
   }
 }

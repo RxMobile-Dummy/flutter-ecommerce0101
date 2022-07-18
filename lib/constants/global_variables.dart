@@ -67,5 +67,25 @@ class GlobalVariables {
   static const logOut ='Log Out';
   static const seeAll ='See all';
   static const search ='Search Amazon.in';
+  static const dealOfTheDay ='Deal of the day';
+  static const hundred ='\$100';
+  static const vivek ='Vivek';
+  static const admin ='Admin';
+  static const seeAllDeals ='See all deals';
+  static const addProduct ='Add a Product';
+  static const mobiles ='Mobiles';
+  static const essentials ='Essentials';
+  static const appliances = 'Appliances';
+  static const books = 'Books';
+  static const fashion =  'Fashion';
+  static const productName =  'Product Name';
+  static const selectProductImage =  'Select Product Images';
+  static const sell =  'Sell';
+  static const description =  'Description';
+  static const price =  'Price';
+  static const quantity =  'Quantity';
   static const accountSuccess ='Account created! Login with the same credentials!';
+
+  static const imageAmazon ='assets/images/amazon_in.png';
+
 }

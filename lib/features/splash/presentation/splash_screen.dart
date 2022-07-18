@@ -25,13 +25,24 @@ class SplashScreen extends StatelessWidget {
                         showSnackBar(context, state.errorMessage);
                       } else if (state is Authenticated) {
                         if(state.userEntity.token!.isNotEmpty){
-                          Timer(const Duration(seconds: 3), () {
-                            Navigator.pushNamedAndRemoveUntil(
-                              context,
-                              RoutesName.actualHome,
-                                  (route) => false,
-                            );
-                          });
+                          if(state.userEntity.type == "user"){
+                            Timer(const Duration(seconds: 3), () {
+                              Navigator.pushNamedAndRemoveUntil(
+                                context,
+                                RoutesName.actualHome,
+                                    (route) => false,
+                              );
+                            });
+                          }else{
+                            Timer(const Duration(seconds: 3), () {
+                              Navigator.pushNamedAndRemoveUntil(
+                                context,
+                                RoutesName.adminScreen,
+                                    (route) => false,
+                              );
+                            });
+                          }
+
 
                         }else{
                           Timer(const Duration(seconds: 3), () {

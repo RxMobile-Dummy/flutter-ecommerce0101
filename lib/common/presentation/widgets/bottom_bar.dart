@@ -6,7 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../constants/global_variables.dart';
 import '../../../features/account/presentation/screens/account_screen.dart';
-import '../../../features/home/screens/home_screen.dart';
+
+import '../../../features/home/presentation/screens/home_screen.dart';
 import '../cubit/bottom_nav_cubit.dart';
 
 class BottomBar extends StatelessWidget {
