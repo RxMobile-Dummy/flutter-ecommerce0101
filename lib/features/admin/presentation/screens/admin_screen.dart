@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../constants/global_variables.dart';
 
-
 class AdminScreen extends StatelessWidget {
   AdminScreen({Key? key}) : super(key: key);
 
@@ -37,7 +36,6 @@ class AdminScreen extends StatelessWidget {
     //       .token
     //       .toString());
     // }
-
   }
 
   @override

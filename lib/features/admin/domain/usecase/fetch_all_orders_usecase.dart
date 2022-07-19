@@ -14,4 +14,3 @@ class FetchAllOrdersUseCase extends UseCase<List<OrderEntity>, Params5> {
   Future<Either<Failure, List<OrderEntity>>?>? call(params) async =>
       await adminServicesRepository.fetchAllOrders(params.token);
 }
-

@@ -7,7 +7,7 @@ import '../../../../constants/utils.dart';
 
 class SelectImageCubit extends Cubit<BaseState> {
   SelectImageCubit() : super(StateInitial());
-   List<File>? list;
+  List<File>? list;
   chooseImage() async {
     var res = await pickImages();
     list = res;

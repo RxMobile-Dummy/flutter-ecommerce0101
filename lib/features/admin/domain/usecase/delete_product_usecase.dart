@@ -1,5 +1,3 @@
-
-
 import 'package:amazon_clone/base/error/failures.dart';
 import 'package:amazon_clone/core/usecases/usecase.dart';
 import 'package:dartz/dartz.dart';
@@ -16,18 +14,18 @@ class DeleteProductUseCase extends UseCase<String, Params6> {
   @override
   Future<Either<Failure, String>?>? call(params) async =>
       await adminServicesRepository.deleteProduct(
-          params.token,params.productEntity);
+          params.token, params.productEntity);
 }
 
 class Params6 extends Equatable {
   final String token;
   final ProductEntity productEntity;
 
-  const Params6(
-      {required this.token,
-      required this.productEntity,});
+  const Params6({
+    required this.token,
+    required this.productEntity,
+  });
 
   @override
-  List<Object?> get props =>
-      [token, productEntity];
+  List<Object?> get props => [token, productEntity];
 }

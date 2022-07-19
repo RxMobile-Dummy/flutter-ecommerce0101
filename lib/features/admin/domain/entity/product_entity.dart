@@ -22,5 +22,6 @@ class ProductEntity extends Equatable {
       this.rating});
 
   @override
-  List<Object?> get props => [name,description,quantity,images,category,price,id,rating];
+  List<Object?> get props =>
+      [name, description, quantity, images, category, price, id, rating];
 }

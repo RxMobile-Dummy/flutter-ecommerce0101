@@ -17,6 +17,7 @@ abstract class AdminServicesDataSource {
   );
 
   Future<Either<Failure, List<ProductModel>>> fetchAllProducts(String token);
-  Future<Either<Failure, String>> deleteProduct(String token,ProductModel productModel);
+  Future<Either<Failure, String>> deleteProduct(
+      String token, ProductModel productModel);
   Future<Either<Failure, List<OrderModel>>> fetchAllOrders(String token);
 }

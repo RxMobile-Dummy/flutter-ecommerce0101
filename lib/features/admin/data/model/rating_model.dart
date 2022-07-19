@@ -2,8 +2,7 @@ import 'dart:convert';
 
 import '../../domain/entity/rating_entity.dart';
 
-class RatingModel extends RatingEntity{
-
+class RatingModel extends RatingEntity {
   const RatingModel({
     required super.userId,
     required super.rating,
@@ -25,5 +24,6 @@ class RatingModel extends RatingEntity{
 
   String toJson() => json.encode(toMap());
 
-  factory RatingModel.fromJson(String source) => RatingModel.fromMap(json.decode(source));
+  factory RatingModel.fromJson(String source) =>
+      RatingModel.fromMap(json.decode(source));
 }

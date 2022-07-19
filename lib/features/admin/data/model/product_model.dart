@@ -4,9 +4,7 @@ import 'package:amazon_clone/features/admin/data/model/rating_model.dart';
 
 import '../../domain/entity/product_entity.dart';
 
-
-class ProductModel extends ProductEntity{
-
+class ProductModel extends ProductEntity {
   const ProductModel({
     required super.name,
     required super.description,

@@ -16,7 +16,8 @@ class AdminServicesCubit extends Cubit<BaseState> {
   final FetchAllOrdersUseCase fetchAllOrdersUseCase;
   final DeleteProductUseCase deleteProductUseCase;
   late List<ProductEntity> _list;
-  AdminServicesCubit({required this.fetchAllOrdersUseCase,
+  AdminServicesCubit(
+      {required this.fetchAllOrdersUseCase,
       required this.deleteProductUseCase,
       required this.fetchAllProducts,
       required this.sellProductUseCase})
@@ -39,29 +40,28 @@ class AdminServicesCubit extends Cubit<BaseState> {
   }
 
   fetchAllProduct(String token) {
-    fetchAllProducts.call(Params5(token: token))!.then((value) => value!.fold(
-        (l) => emit(StateErrorGeneral(l.message ?? "")),
-        (r) {
-             _list =r;
-              emit(StateOnSuccess<List<ProductEntity>>(_list));
+    fetchAllProducts.call(Params5(token: token))!.then((value) =>
+        value!.fold((l) => emit(StateErrorGeneral(l.message ?? "")), (r) {
+          _list = r;
+          emit(StateOnSuccess<List<ProductEntity>>(_list));
         }));
   }
 
-  deleteProduct(String token, ProductEntity productEntity,int index) {
+  deleteProduct(String token, ProductEntity productEntity, int index) {
     deleteProductUseCase
         .call(Params6(token: token, productEntity: productEntity))!
-        .then((value) => value!.fold((l) => emit(StateErrorGeneral(l.message ?? "")),
-            (r) {
+        .then((value) =>
+            value!.fold((l) => emit(StateErrorGeneral(l.message ?? "")), (r) {
               emit(StateInitial());
-               _list.removeAt(index);
+              _list.removeAt(index);
               emit(StateOnSuccess(_list));
             }));
   }
 
   fetchAllOrder(String token) {
-    fetchAllOrdersUseCase.call(Params5(token: token))!.then((value) => value!.fold(
-            (l) => emit(StateErrorGeneral(l.message ?? "")),
-            (r) {emit(StateOnSuccess<List<OrderEntity>>(r));
+    fetchAllOrdersUseCase.call(Params5(token: token))!.then((value) =>
+        value!.fold((l) => emit(StateErrorGeneral(l.message ?? "")), (r) {
+          emit(StateOnSuccess<List<OrderEntity>>(r));
         }));
   }
 }

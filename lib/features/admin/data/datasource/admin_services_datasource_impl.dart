@@ -68,14 +68,16 @@ class AdminServicesDataSourceImpl extends AdminServicesDataSource {
   }
 
   @override
-  Future<Either<Failure, List<ProductModel>>> fetchAllProducts(String token) async {
+  Future<Either<Failure, List<ProductModel>>> fetchAllProducts(
+      String token) async {
     List<ProductModel> productList = [];
     try {
-      http.Response response =
-          await http.get(Uri.parse('${GlobalVariables.uri}/admin/get-products'), headers: {
-        'Content-Type': 'application/json; charset=UTF-8',
-        'x-auth-token': token,
-      });
+      http.Response response = await http.get(
+          Uri.parse('${GlobalVariables.uri}/admin/get-products'),
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+            'x-auth-token': token,
+          });
       if (response.statusCode == 200) {
         debugPrint(response.statusCode.toString());
         for (int i = 0; i < jsonDecode(response.body).length; i++) {
@@ -87,7 +89,7 @@ class AdminServicesDataSourceImpl extends AdminServicesDataSource {
             ),
           );
         }
-        return  Right(productList);
+        return Right(productList);
       } else {
         debugPrint(response.statusCode.toString());
         return Left(ServerFailure(message: getError(response)));
@@ -99,8 +101,8 @@ class AdminServicesDataSourceImpl extends AdminServicesDataSource {
   }
 
   @override
-  Future<Either<Failure, String>> deleteProduct(String token,ProductModel productModel) async {
-
+  Future<Either<Failure, String>> deleteProduct(
+      String token, ProductModel productModel) async {
     try {
       http.Response response = await http.post(
         Uri.parse('${GlobalVariables.uri}/admin/delete-product'),
@@ -129,8 +131,8 @@ class AdminServicesDataSourceImpl extends AdminServicesDataSource {
   Future<Either<Failure, List<OrderModel>>> fetchAllOrders(String token) async {
     List<OrderModel> orderList = [];
     try {
-      http.Response response =
-          await http.get(Uri.parse('${GlobalVariables.uri}/admin/get-orders'), headers: {
+      http.Response response = await http
+          .get(Uri.parse('${GlobalVariables.uri}/admin/get-orders'), headers: {
         'Content-Type': 'application/json; charset=UTF-8',
         'x-auth-token': token,
       });
@@ -145,14 +147,14 @@ class AdminServicesDataSourceImpl extends AdminServicesDataSource {
             ),
           );
         }
-        return  Right(orderList);
+        return Right(orderList);
       } else {
         debugPrint(response.statusCode.toString());
         return Left(ServerFailure(message: getError(response)));
       }
     } catch (e) {
       debugPrint(e.toString());
-      return Left(ServerFailure(message:e.toString()));
+      return Left(ServerFailure(message: e.toString()));
     }
   }
 }

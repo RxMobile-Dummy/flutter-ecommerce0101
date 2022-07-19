@@ -17,7 +17,8 @@ abstract class AdminServicesRepository {
     List<File> images,
   );
 
-  Future<Either<Failure, String>> deleteProduct(String token,ProductEntity productEntity);
+  Future<Either<Failure, String>> deleteProduct(
+      String token, ProductEntity productEntity);
   Future<Either<Failure, List<OrderEntity>>> fetchAllOrders(String token);
 
   Future<Either<Failure, List<ProductEntity>>> fetchAllProducts(String token);

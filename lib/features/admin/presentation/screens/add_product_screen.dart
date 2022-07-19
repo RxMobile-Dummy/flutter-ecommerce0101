@@ -71,9 +71,10 @@ class AddProductScreen extends StatelessWidget {
             /*if (state is StateOnSuccess) {
               showSnackBar(context, state.response);
               Navigator.pop(context);
-            } else*/ if (state is StateErrorGeneral) {
+            } else*/
+            if (state is StateErrorGeneral) {
               showSnackBar(context, state.errorMessage.toString());
-            }else if(state is StateOnAddSuccess){
+            } else if (state is StateOnAddSuccess) {
               showSnackBar(context, state.response);
               Navigator.pop(context);
             }

@@ -20,22 +20,27 @@ class PostsScreen extends StatefulWidget {
 class _PostsScreenState extends State<PostsScreen> {
   @override
   void initState() {
-    BlocProvider.of<AdminServicesCubit>(context).fetchAllProduct((context.read<UserDetailCubit>().state as Authenticated)
-        .userEntity
-        .token
-        .toString());
+    BlocProvider.of<AdminServicesCubit>(context).fetchAllProduct(
+        (context.read<UserDetailCubit>().state as Authenticated)
+            .userEntity
+            .token
+            .toString());
     super.initState();
   }
-  void deleteProduct(ProductEntity product, int index,BuildContext context) {
-    BlocProvider.of<AdminServicesCubit>(context).deleteProduct((context.read<UserDetailCubit>().state as Authenticated)
-        .userEntity
-        .token
-        .toString(), product,index);
+
+  void deleteProduct(ProductEntity product, int index, BuildContext context) {
+    BlocProvider.of<AdminServicesCubit>(context).deleteProduct(
+        (context.read<UserDetailCubit>().state as Authenticated)
+            .userEntity
+            .token
+            .toString(),
+        product,
+        index);
   }
 
   @override
   Widget build(BuildContext context) {
-    return  BlocBuilder<AdminServicesCubit,BaseState>(
+    return BlocBuilder<AdminServicesCubit, BaseState>(
       builder: (context, state) {
         if (state is StateOnSuccess) {
           return Scaffold(
@@ -64,7 +69,8 @@ class _PostsScreenState extends State<PostsScreen> {
                           ),
                         ),
                         IconButton(
-                          onPressed: () => deleteProduct(productData, index,context),
+                          onPressed: () =>
+                              deleteProduct(productData, index, context),
                           icon: const Icon(
                             Icons.delete_outline,
                           ),
@@ -76,12 +82,13 @@ class _PostsScreenState extends State<PostsScreen> {
               },
             ),
             floatingActionButton: FloatingActionButton(
-              onPressed:() => Navigator.pushNamed(context, RoutesName.addProduct),
+              onPressed: () =>
+                  Navigator.pushNamed(context, RoutesName.addProduct),
               tooltip: GlobalVariables.addProduct,
               child: const Icon(Icons.add),
             ),
             floatingActionButtonLocation:
-            FloatingActionButtonLocation.centerFloat,
+                FloatingActionButtonLocation.centerFloat,
           );
         } else if (state is StateErrorGeneral) {
           return const Loader();

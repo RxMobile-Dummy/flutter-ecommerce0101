@@ -16,21 +16,21 @@ class OrdersScreen extends StatefulWidget {
 }
 
 class _OrdersScreenState extends State<OrdersScreen> {
-
   @override
   void initState() {
-
     super.initState();
-    BlocProvider.of<AdminServicesCubit>(context).fetchAllOrder((context.read<UserDetailCubit>().state as Authenticated)
-        .userEntity
-        .token
-        .toString());
+    BlocProvider.of<AdminServicesCubit>(context).fetchAllOrder(
+        (context.read<UserDetailCubit>().state as Authenticated)
+            .userEntity
+            .token
+            .toString());
   }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AdminServicesCubit, BaseState>(
       builder: (context, state) {
-        if(state is StateOnSuccess){
+        if (state is StateOnSuccess) {
           return GridView.builder(
             itemCount: state.response!.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -55,8 +55,10 @@ class _OrdersScreenState extends State<OrdersScreen> {
               );
             },
           );
-        }else if(state is StateErrorGeneral){
-          return Center(child: Text(state.errorMessage.toString()),);
+        } else if (state is StateErrorGeneral) {
+          return Center(
+            child: Text(state.errorMessage.toString()),
+          );
         }
         return const Loader();
       },
