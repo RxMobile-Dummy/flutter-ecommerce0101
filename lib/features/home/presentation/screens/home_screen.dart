@@ -1,3 +1,4 @@
+import 'package:amazon_clone/routes_name.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../constants/global_variables.dart';
@@ -10,7 +11,10 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void navigateToSearchScreen(String query) {}
+    void navigateToSearchScreen(String query) {
+      Navigator.pushNamed(context, RoutesName.searchScreen, arguments: query);
+    }
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
