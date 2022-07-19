@@ -82,6 +82,23 @@ class StateOnSuccess<T> extends BaseState {
   List<Object?> get props => [response];
 }
 
+class StateOnDeleteSuccess<T> extends BaseState {
+  final T response;
+
+  StateOnDeleteSuccess(this.response);
+
+  @override
+  List<Object?> get props => [response];
+}
+
+class StateOnAddSuccess<T> extends BaseState {
+  final T response;
+
+  StateOnAddSuccess(this.response);
+
+  @override
+  List<Object?> get props => [response];
+}
 class StateReorderSuccess<T> extends BaseState {
   final T response;
   final int? updatedIndex;

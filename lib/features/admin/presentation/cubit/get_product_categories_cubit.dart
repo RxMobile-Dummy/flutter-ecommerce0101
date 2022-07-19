@@ -3,6 +3,7 @@ import 'package:amazon_clone/core/usecases/usecase.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../constants/global_variables.dart';
 import '../../domain/usecase/get_product_categories_usecase.dart';
 
 class GetProductCategoriesCubit extends Cubit<BaseState> {

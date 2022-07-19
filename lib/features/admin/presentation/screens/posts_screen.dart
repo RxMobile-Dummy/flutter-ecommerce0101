@@ -1,7 +1,14 @@
 import 'package:amazon_clone/constants/global_variables.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../base/base_state.dart';
+import '../../../../common/presentation/widgets/loader.dart';
 import '../../../../routes_name.dart';
+import '../../../account/presentation/widgets/single_product.dart';
+import '../../../auth/presentation/cubit/user_detail_cubit.dart';
+import '../../domain/entity/product_entity.dart';
+import '../cubit/admin_services_cubit.dart';
 
 class PostsScreen extends StatefulWidget {
   const PostsScreen({Key? key}) : super(key: key);
@@ -11,47 +18,33 @@ class PostsScreen extends StatefulWidget {
 }
 
 class _PostsScreenState extends State<PostsScreen> {
-  // List<Product>? products;
-  // final AdminServices adminServices = AdminServices();
-
   @override
   void initState() {
+    BlocProvider.of<AdminServicesCubit>(context).fetchAllProduct((context.read<UserDetailCubit>().state as Authenticated)
+        .userEntity
+        .token
+        .toString());
     super.initState();
-    fetchAllProducts();
   }
-
-  fetchAllProducts() async {
-    // products = await adminServices.fetchAllProducts(context);
-    //  setState(() {});
-  }
-
-  /*void deleteProduct(Product product, int index) {
-    adminServices.deleteProduct(
-      context: context,
-      product: product,
-      onSuccess: () {
-        products!.removeAt(index);
-        setState(() {});
-      },
-    );
-  }*/
-
-  void navigateToAddProduct() {
-    Navigator.pushNamed(context, RoutesName.addProduct);
+  void deleteProduct(ProductEntity product, int index,BuildContext context) {
+    BlocProvider.of<AdminServicesCubit>(context).deleteProduct((context.read<UserDetailCubit>().state as Authenticated)
+        .userEntity
+        .token
+        .toString(), product,index);
   }
 
   @override
   Widget build(BuildContext context) {
-    return /*products == null
-        ? const Loader()
-        :*/
-        Scaffold(
-      /* body: GridView.builder(
-              itemCount: products!.length,
+    return  BlocBuilder<AdminServicesCubit,BaseState>(
+      builder: (context, state) {
+        if (state is StateOnSuccess) {
+          return Scaffold(
+            body: GridView.builder(
+              itemCount: state.response.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2),
               itemBuilder: (context, index) {
-                final productData = products![index];
+                final productData = state.response[index];
                 return Column(
                   children: [
                     SizedBox(
@@ -71,7 +64,7 @@ class _PostsScreenState extends State<PostsScreen> {
                           ),
                         ),
                         IconButton(
-                          onPressed: () => deleteProduct(productData, index),
+                          onPressed: () => deleteProduct(productData, index,context),
                           icon: const Icon(
                             Icons.delete_outline,
                           ),
@@ -81,13 +74,20 @@ class _PostsScreenState extends State<PostsScreen> {
                   ],
                 );
               },
-            ),*/
-      floatingActionButton: FloatingActionButton(
-        onPressed: navigateToAddProduct,
-        tooltip: GlobalVariables.addProduct,
-        child: const Icon(Icons.add),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+            ),
+            floatingActionButton: FloatingActionButton(
+              onPressed:() => Navigator.pushNamed(context, RoutesName.addProduct),
+              tooltip: GlobalVariables.addProduct,
+              child: const Icon(Icons.add),
+            ),
+            floatingActionButtonLocation:
+            FloatingActionButtonLocation.centerFloat,
+          );
+        } else if (state is StateErrorGeneral) {
+          return const Loader();
+        }
+        return const Loader();
+      },
     );
   }
 }

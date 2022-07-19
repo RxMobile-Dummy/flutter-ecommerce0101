@@ -84,6 +84,15 @@ class GlobalVariables {
   static const description = 'Description';
   static const price = 'Price';
   static const quantity = 'Quantity';
+  static const inStock = 'In Stock';
+  static const searchInAmazon = 'Search Amazon.in';
+  static const freeShipping = 'Eligible for Shipping Shipping';
+  static const productAddSuccess = 'Product Added Successfully!';
+  static const productDeleteSuccess = 'Product Delete Successfully!';
+  static const dealPrice = 'Deal Price: ';
+  static const buyNow = 'Buy Now';
+  static const rateTheProduct = 'Rate The Product';
+  static const addToCart = 'Add to Cart';
   static const accountSuccess =
       'Account created! Login with the same credentials!';
 

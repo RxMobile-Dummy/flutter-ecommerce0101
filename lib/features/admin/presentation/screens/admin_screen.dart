@@ -6,24 +6,38 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../constants/global_variables.dart';
 
+
 class AdminScreen extends StatelessWidget {
   AdminScreen({Key? key}) : super(key: key);
 
   List<Widget> pages = [
     const PostsScreen(),
     const Center(
-      child: Text(""),
+      child: Text("AnalyticsScreen"),
     ),
     const Center(
-      child: Text(""),
+      child: Text("OrdersScreen"),
     ),
-
+    //const OrdersScreen(),
     // const AnalyticsScreen(),
-    // const OrdersScreen(),
   ];
 
   void updatePage(int page, BuildContext context) {
     BlocProvider.of<BottomNavCubit>(context).setPage(page);
+    // if(page == 0){
+    //   BlocProvider.of<AdminServicesCubit>(context).fetchAllProduct((context.read<UserDetailCubit>().state as Authenticated)
+    //         .userEntity
+    //         .token
+    //         .toString());
+    // }else if(page == 1){
+    //
+    // }else if(page == 2){
+    //   BlocProvider.of<AdminServicesCubit>(context).fetchAllOrder((context.read<UserDetailCubit>().state as Authenticated)
+    //       .userEntity
+    //       .token
+    //       .toString());
+    // }
+
   }
 
   @override

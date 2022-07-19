@@ -4,10 +4,17 @@ import 'package:amazon_clone/constants/global_variables.dart';
 import 'package:amazon_clone/router.dart';
 import 'package:flutter/material.dart';
 import 'package:amazon_clone/features/auth/auth_injection_container.dart'
-    as auth;
+as auth;
 import 'package:amazon_clone/features/admin/admin_injection_container.dart'
-    as admin;
+as admin;
+import 'package:amazon_clone/features/home/home_injection_container.dart'
+as home;
+import 'package:amazon_clone/features/search/search_injection_container.dart'
+as search;
 import 'package:amazon_clone/injection_container.dart' as sl;
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'features/auth/presentation/cubit/user_detail_cubit.dart';
 
 //this is for resolved handshake error, don't use in production
 class MyHttpOverrides extends HttpOverrides {
@@ -26,6 +33,8 @@ Future<void> main() async {
   await auth.init();
   await sl.init();
   await admin.init();
+  await home.init();
+  await search.init();
 
   runApp(const MyApp());
 }
@@ -35,31 +44,34 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        //set color for widgets like buttons, appbar
-        colorScheme: const ColorScheme.light(
-          primary: GlobalVariables.secondaryColor,
+    return BlocProvider<UserDetailCubit>(
+      create: (context) => auth.auth<UserDetailCubit>()..getUserData(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          //set color for widgets like buttons, appbar
+          colorScheme: const ColorScheme.light(
+            primary: GlobalVariables.secondaryColor,
+          ),
+          //app bar theme
+          appBarTheme: const AppBarTheme(
+            elevation: 0,
+            //all icon colors are black
+            iconTheme: IconThemeData(color: Colors.black),
+          ),
+          //background for scaffold
+          scaffoldBackgroundColor: GlobalVariables.backgroundColor,
         ),
-        //app bar theme
-        appBarTheme: const AppBarTheme(
-          elevation: 0,
-          //all icon colors are black
-          iconTheme: IconThemeData(color: Colors.black),
-        ),
-        //background for scaffold
-        scaffoldBackgroundColor: GlobalVariables.backgroundColor,
+        onGenerateRoute: (settings) => generateRoute(settings),
+        builder: (context, child) {
+          return GestureDetector(
+              onTap: () {
+                FocusScope.of(context).requestFocus(FocusNode());
+              },
+              child: child);
+        },
       ),
-      onGenerateRoute: (settings) => generateRoute(settings),
-      builder: (context, child) {
-        return GestureDetector(
-            onTap: () {
-              FocusScope.of(context).requestFocus(FocusNode());
-            },
-            child: child);
-      },
     );
   }
 }
