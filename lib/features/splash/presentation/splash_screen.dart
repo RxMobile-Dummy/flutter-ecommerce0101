@@ -20,6 +20,13 @@ class SplashScreen extends StatelessWidget {
         if (state is StateErrorGeneral) {
           debugPrint("StateErrorGeneral");
           debugPrint(state.errorMessage);
+          Timer(const Duration(seconds: 3), () {
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              RoutesName.authScreen,
+              (route) => false,
+            );
+          });
           showSnackBar(context, state.errorMessage);
         } else if (state is Authenticated) {
           if (state.userEntity.token!.isNotEmpty) {

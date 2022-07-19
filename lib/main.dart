@@ -4,13 +4,13 @@ import 'package:amazon_clone/constants/global_variables.dart';
 import 'package:amazon_clone/router.dart';
 import 'package:flutter/material.dart';
 import 'package:amazon_clone/features/auth/auth_injection_container.dart'
-as auth;
+    as auth;
 import 'package:amazon_clone/features/admin/admin_injection_container.dart'
-as admin;
+    as admin;
 import 'package:amazon_clone/features/home/home_injection_container.dart'
-as home;
+    as home;
 import 'package:amazon_clone/features/search/search_injection_container.dart'
-as search;
+    as search;
 import 'package:amazon_clone/injection_container.dart' as sl;
 import 'package:flutter_bloc/flutter_bloc.dart';
 

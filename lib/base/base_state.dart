@@ -99,6 +99,7 @@ class StateOnAddSuccess<T> extends BaseState {
   @override
   List<Object?> get props => [response];
 }
+
 class StateReorderSuccess<T> extends BaseState {
   final T response;
   final int? updatedIndex;

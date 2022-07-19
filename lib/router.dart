@@ -34,11 +34,9 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
     case RoutesName.splashScreen:
       return MaterialPageRoute(
         settings: routeSettings,
-        builder: (_) =>  Builder(
-          builder: (context) {
-            return const SplashScreen();
-          }
-        ),
+        builder: (_) => Builder(builder: (context) {
+          return const SplashScreen();
+        }),
       );
 
     case RoutesName.authScreen:
@@ -65,7 +63,6 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
           BlocProvider<BottomNavCubit>(
             create: (context) => sl.sl<BottomNavCubit>()..setPage(0),
           ),
-
         ], child: BottomBar()),
       );
 
@@ -77,11 +74,12 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
             create: (context) => sl.sl<BottomNavCubit>()..setPage(0),
           ),
           BlocProvider<AdminServicesCubit>(
-                  create: (context) => admin.admin<AdminServicesCubit>()/*..fetchAllProduct((context.read<UserDetailCubit>().state as Authenticated)
+              create: (context) => admin.admin<
+                  AdminServicesCubit>() /*..fetchAllProduct((context.read<UserDetailCubit>().state as Authenticated)
                       .userEntity
                       .token
                       .toString()),*/
-                ),
+              ),
         ], child: AdminScreen()),
       );
 
@@ -92,7 +90,6 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
           BlocProvider<AuthServiceCubit>(
             create: (context) => auth.auth<AuthServiceCubit>(),
           ),
-
         ], child: const HomeScreen()),
       );
 
@@ -100,7 +97,6 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
       return MaterialPageRoute(
         settings: routeSettings,
         builder: (_) => MultiBlocProvider(providers: [
-
           BlocProvider<AdminServicesCubit>(
             create: (context) => admin.admin<AdminServicesCubit>(),
           ),
@@ -118,29 +114,42 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
       var category = routeSettings.arguments as String;
       return MaterialPageRoute(
         settings: routeSettings,
-        builder: (_) => MultiBlocProvider(providers: [
-          BlocProvider<HomeServicesCubit>(
-            create: (context) => home.home<HomeServicesCubit>()..fetchCategoryProducts((context.read<UserDetailCubit>().state as Authenticated)
-                .userEntity
-                .token
-                .toString(),category),
-          ),
-        ], child:  CategoryDealsScreen( category: category,)),
+        builder: (_) => MultiBlocProvider(
+            providers: [
+              BlocProvider<HomeServicesCubit>(
+                create: (context) => home.home<HomeServicesCubit>()
+                  ..fetchCategoryProducts(
+                      (context.read<UserDetailCubit>().state as Authenticated)
+                          .userEntity
+                          .token
+                          .toString(),
+                      category),
+              ),
+            ],
+            child: CategoryDealsScreen(
+              category: category,
+            )),
       );
     case RoutesName.searchScreen:
       var searchQuery = routeSettings.arguments as String;
       return MaterialPageRoute(
         settings: routeSettings,
-        builder: (_) => MultiBlocProvider(providers: [
-          BlocProvider<SearchServicesCubit>(
-            create: (context) => search.search<SearchServicesCubit>()..fetchCategoryProducts((context.read<UserDetailCubit>().state as Authenticated)
-                .userEntity
-                .token
-                .toString(),searchQuery),
+        builder: (_) => MultiBlocProvider(
+          providers: [
+            BlocProvider<SearchServicesCubit>(
+              create: (context) => search.search<SearchServicesCubit>()
+                ..fetchCategoryProducts(
+                    (context.read<UserDetailCubit>().state as Authenticated)
+                        .userEntity
+                        .token
+                        .toString(),
+                    searchQuery),
+            ),
+          ],
+          child: SearchScreen(
+            searchQuery: searchQuery,
           ),
-        ], child:  SearchScreen(
-          searchQuery: searchQuery,
-        ),),
+        ),
       );
 
     default:
