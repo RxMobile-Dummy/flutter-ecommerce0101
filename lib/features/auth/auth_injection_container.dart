@@ -23,7 +23,7 @@ Future<void> init() async {
   auth.registerFactory(
     () => AuthManageCubit(authManageUseCase: auth()),
   );
-  auth.registerFactory(
+  auth.registerLazySingleton(
     () => AuthServiceCubit(signUpUseCase: auth(), signInUseCase: auth()),
   );
   auth.registerLazySingleton(
