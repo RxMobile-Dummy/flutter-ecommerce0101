@@ -1,9 +1,7 @@
 import 'package:amazon_clone/base/base_state.dart';
 import 'package:amazon_clone/core/usecases/usecase.dart';
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../constants/global_variables.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../domain/usecase/get_product_categories_usecase.dart';
 
 class GetProductCategoriesCubit extends Cubit<BaseState> {
@@ -12,7 +10,6 @@ class GetProductCategoriesCubit extends Cubit<BaseState> {
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
   final TextEditingController quantityController = TextEditingController();
-
   late List<String> _list;
   GetProductCategoriesCubit({required this.getProductCategoriesUseCase})
       : super(StateInitial());

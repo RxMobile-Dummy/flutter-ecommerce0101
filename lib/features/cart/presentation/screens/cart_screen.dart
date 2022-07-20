@@ -18,12 +18,12 @@ class CartScreen extends StatelessWidget {
     Navigator.pushNamed(context, RoutesName.searchScreen, arguments: query);
   }
 
-  void navigateToAddress(int sum) {
-    // Navigator.pushNamed(
-    //   context,
-    //   AddressScreen.routeName,
-    //   arguments: sum.toString(),
-    // );
+  void navigateToAddress(int sum, BuildContext context) {
+    Navigator.pushNamed(
+      context,
+      RoutesName.addressScreen,
+      arguments: sum.toString(),
+    );
   }
 
   @override
@@ -118,7 +118,7 @@ class CartScreen extends StatelessWidget {
                     text:
                         'Proceed to Buy (${(context.read<UserDetailCubit>().state as Authenticated).userEntity.cart!.length} items)',
                     onTap: () => navigateToAddress(
-                        context.read<CartServicesCubit>().sum),
+                        context.read<CartServicesCubit>().sum, context),
                     color: Colors.yellow[600],
                   );
                 },
