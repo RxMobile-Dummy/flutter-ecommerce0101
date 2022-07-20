@@ -43,4 +43,33 @@ class HomeServicesDataSourceImpl extends HomeServicesDataSource {
       return Left(ServerFailure(message: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, ProductModel>> fetchDealOfDay(String token) async {
+    // ProductModel product = const ProductModel(
+    //   name: '',
+    //   description: '',
+    //   quantity: 0,
+    //   images: [],
+    //   category: '',
+    //   price: 0,
+    // );
+    try {
+      http.Response response = await http
+          .get(Uri.parse('${GlobalVariables.uri}/api/deal-of-day'), headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'x-auth-token': token,
+      });
+      if (response.statusCode == 200) {
+        debugPrint(response.statusCode.toString());
+        return Right(ProductModel.fromJson(response.body));
+      } else {
+        debugPrint(response.statusCode.toString());
+        return Left(ServerFailure(message: getError(response)));
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+      return Left(ServerFailure(message: e.toString()));
+    }
+  }
 }

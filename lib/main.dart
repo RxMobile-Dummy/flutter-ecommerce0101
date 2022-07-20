@@ -11,6 +11,8 @@ import 'package:amazon_clone/features/home/home_injection_container.dart'
     as home;
 import 'package:amazon_clone/features/search/search_injection_container.dart'
     as search;
+import 'package:amazon_clone/features/product_details/product_details_injection_container.dart'
+    as product_details;
 import 'package:amazon_clone/injection_container.dart' as sl;
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -35,6 +37,7 @@ Future<void> main() async {
   await admin.init();
   await home.init();
   await search.init();
+  await product_details.init();
 
   runApp(const MyApp());
 }

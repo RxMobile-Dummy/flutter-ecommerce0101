@@ -1,10 +1,13 @@
 import 'package:amazon_clone/common/presentation/cubit/bottom_nav_cubit.dart';
 import 'package:amazon_clone/common/presentation/widgets/bottom_bar.dart';
 import 'package:amazon_clone/constants/global_variables.dart';
+import 'package:amazon_clone/features/admin/domain/entity/product_entity.dart';
 import 'package:amazon_clone/features/admin/presentation/screens/add_product_screen.dart';
 import 'package:amazon_clone/features/admin/presentation/screens/admin_screen.dart';
 import 'package:amazon_clone/features/auth/presentation/cubit/user_detail_cubit.dart';
 import 'package:amazon_clone/features/home/presentation/cubit/home_services_cubit.dart';
+import 'package:amazon_clone/features/product_details/presentation/cubit/product_details_services_cubit.dart';
+import 'package:amazon_clone/features/product_details/presentation/screens/product_details_screen.dart';
 import 'package:amazon_clone/features/search/presentation/cubit/search_services_cubit.dart';
 
 import 'package:amazon_clone/routes_name.dart';
@@ -22,6 +25,8 @@ import 'features/auth/auth_injection_container.dart' as auth;
 import 'features/admin/admin_injection_container.dart' as admin;
 import 'features/home/home_injection_container.dart' as home;
 import 'features/search/search_injection_container.dart' as search;
+import 'features/product_details/product_details_injection_container.dart'
+    as product_details;
 import '/injection_container.dart' as sl;
 import 'features/auth/presentation/screens/auth_screen.dart';
 import 'features/home/presentation/screens/category_deals_screen.dart';
@@ -148,6 +153,30 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
           ],
           child: SearchScreen(
             searchQuery: searchQuery,
+          ),
+        ),
+      );
+
+    case RoutesName.productDetails:
+      var product = routeSettings.arguments as ProductEntity;
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => MultiBlocProvider(
+          providers: [
+            BlocProvider<ProductDetailsServicesCubit>(
+              create: (context) =>
+                  product_details.productDetails<ProductDetailsServicesCubit>()
+                    ..calculateProduct(
+                      product,
+                      (context.read<UserDetailCubit>().state as Authenticated)
+                          .userEntity
+                          .id
+                          .toString(),
+                    ),
+            ),
+          ],
+          child: ProductDetailScreen(
+            product: product,
           ),
         ),
       );

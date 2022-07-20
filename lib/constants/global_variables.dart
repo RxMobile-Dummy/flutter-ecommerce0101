@@ -93,6 +93,7 @@ class GlobalVariables {
   static const buyNow = 'Buy Now';
   static const rateTheProduct = 'Rate The Product';
   static const addToCart = 'Add to Cart';
+  static const ratingSuccess = 'Thanks for rating';
   static const accountSuccess =
       'Account created! Login with the same credentials!';
 

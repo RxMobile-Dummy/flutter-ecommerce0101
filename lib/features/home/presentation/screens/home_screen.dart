@@ -1,9 +1,15 @@
+import 'package:amazon_clone/features/home/presentation/cubit/home_services_cubit.dart';
 import 'package:amazon_clone/routes_name.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:amazon_clone/features/home/home_injection_container.dart'
+    as home;
+import '../../../../base/base_state.dart';
 import '../../../../constants/global_variables.dart';
+import '../../../auth/presentation/cubit/user_detail_cubit.dart';
 import '../widgets/address_box.dart';
 import '../widgets/carousel_image.dart';
+import '../widgets/deal_of_day.dart';
 import '../widgets/top_categories.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -90,13 +96,22 @@ class HomeScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Column(
-          children: const [
+          children: [
             AddressBox(),
             SizedBox(height: 10),
             TopCategories(),
             SizedBox(height: 10),
             CarouselImage(),
             //  DealOfDay(),
+            BlocProvider<HomeServicesCubit>(
+              create: (_) => home.home<HomeServicesCubit>()
+                ..fetchDealsOfTheDay(
+                    (context.read<UserDetailCubit>().state as Authenticated)
+                        .userEntity
+                        .token
+                        .toString()),
+              child: const DealOfDay(),
+            ),
           ],
         ),
       ),

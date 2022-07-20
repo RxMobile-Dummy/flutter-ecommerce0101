@@ -1,5 +1,6 @@
 import 'package:amazon_clone/base/base_state.dart';
 import 'package:amazon_clone/features/home/presentation/cubit/home_services_cubit.dart';
+import 'package:amazon_clone/routes_name.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -66,11 +67,11 @@ class CategoryDealsScreen extends StatelessWidget {
                         final product = state.response![index];
                         return GestureDetector(
                           onTap: () {
-                            // Navigator.pushNamed(
-                            //   context,
-                            //   ProductDetailScreen.routeName,
-                            //   arguments: product,
-                            // );
+                            Navigator.pushNamed(
+                              context,
+                              RoutesName.productDetails,
+                              arguments: product,
+                            );
                           },
                           child: Column(
                             children: [
