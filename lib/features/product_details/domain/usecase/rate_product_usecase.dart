@@ -13,6 +13,6 @@ class RateToProductUseCase extends UseCase<String, Params8> {
   @override
   Future<Either<Failure, String>?>? call(Params8 params) async {
     return await productDetailsServicesRepository.rateProduct(
-        params.productId!, params.rating!);
+        params.productId!, params.rating!, params.userEntity.token!);
   }
 }

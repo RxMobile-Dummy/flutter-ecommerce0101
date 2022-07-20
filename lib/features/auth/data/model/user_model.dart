@@ -11,7 +11,7 @@ class UserModel extends UserEntity {
     super.address,
     super.type,
     super.token,
-    //required super.cart,
+    super.cart,
   });
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
@@ -23,11 +23,11 @@ class UserModel extends UserEntity {
       address: map['address'] ?? '',
       type: map['type'] ?? '',
       token: map['token'] ?? '',
-      // cart: List<Map<String, dynamic>>.from(
-      //   map['cart']?.map(
-      //         (x) => Map<String, dynamic>.from(x),
-      //   ),
-      // ),
+      cart: List<Map<String, dynamic>>.from(
+        map['cart']?.map(
+          (x) => Map<String, dynamic>.from(x),
+        ),
+      ),
     );
   }
 
@@ -40,7 +40,7 @@ class UserModel extends UserEntity {
       'address': address,
       'type': type,
       'token': token,
-      //'cart': cart,
+      'cart': cart,
     };
   }
 
@@ -57,7 +57,7 @@ class UserModel extends UserEntity {
     String? address,
     String? type,
     String? token,
-    // List<dynamic>? cart,
+    List<dynamic>? cart,
   }) {
     return UserModel(
       id: id ?? this.id,
@@ -67,7 +67,7 @@ class UserModel extends UserEntity {
       address: address ?? this.address,
       type: type ?? this.type,
       token: token ?? this.token,
-      // cart: cart ?? this.cart,
+      cart: cart ?? this.cart,
     );
   }
 }

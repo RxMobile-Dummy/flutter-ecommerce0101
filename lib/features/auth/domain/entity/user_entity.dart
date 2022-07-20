@@ -6,7 +6,7 @@ class UserEntity {
   final String? address;
   final String? type;
   final String? token;
-
+  final List<dynamic>? cart;
   UserEntity(
       {this.name,
       this.email,
@@ -14,5 +14,6 @@ class UserEntity {
       this.id,
       this.address,
       this.type,
-      this.token});
+      this.token,
+      this.cart});
 }

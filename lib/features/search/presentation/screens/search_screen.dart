@@ -109,11 +109,11 @@ class SearchScreen extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
-                          // Navigator.pushNamed(
-                          //   context,
-                          //   ProductDetailScreen.routeName,
-                          //   arguments: products![index],
-                          // );
+                          Navigator.pushNamed(
+                            context,
+                            RoutesName.productDetails,
+                            arguments: state.response![index],
+                          );
                         },
                         child: SearchedProduct(
                           product: state.response![index],
