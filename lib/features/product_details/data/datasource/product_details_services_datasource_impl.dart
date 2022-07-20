@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 
 import '../../../../base/error/error_handaling.dart';
 import '../../../../constants/global_variables.dart';
+import '../../../cart/data/model/cart_model.dart';
 
 class ProductDetailsServicesDataSourceImpl
     extends ProductDetailsServicesDataSource {
@@ -28,8 +29,9 @@ class ProductDetailsServicesDataSourceImpl
       );
       if (response.statusCode == 200) {
         debugPrint(response.statusCode.toString());
-        UserModel userModel2 =
-            userModel.copyWith(cart: jsonDecode(response.body)['cart']);
+        List<CartModel> list = List<CartModel>.from(
+            jsonDecode(response.body)['cart'].map((x) => CartModel.fromMap(x)));
+        UserModel userModel2 = userModel.copyWith(cart: list);
         return Right(userModel2);
       } else {
         debugPrint(response.statusCode.toString());

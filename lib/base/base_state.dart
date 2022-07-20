@@ -82,10 +82,10 @@ class StateOnSuccess<T> extends BaseState {
   List<Object?> get props => [response];
 }
 
-class StateOnAddCartSuccess<T> extends BaseState {
+class StateOnCartSuccess<T> extends BaseState {
   final T response;
 
-  StateOnAddCartSuccess(this.response);
+  StateOnCartSuccess(this.response);
 
   @override
   List<Object?> get props => [response];

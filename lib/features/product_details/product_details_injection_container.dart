@@ -5,7 +5,7 @@ import '../../injection_container.dart';
 import 'data/datasource/product_details_services_datasource.dart';
 import 'data/datasource/product_details_services_datasource_impl.dart';
 import 'data/repository/product_details_services_repository_impl.dart';
-import 'domain/repository/product_repository_services_repository.dart';
+import 'domain/repository/product_details_services_repository.dart';
 import 'domain/usecase/add_to_cart_usecase.dart';
 import 'domain/usecase/rate_product_usecase.dart';
 

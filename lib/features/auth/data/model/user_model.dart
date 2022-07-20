@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:amazon_clone/features/auth/domain/entity/user_entity.dart';
 
+import '../../../cart/data/model/cart_model.dart';
+
 class UserModel extends UserEntity {
   UserModel({
     required super.name,
@@ -23,11 +25,9 @@ class UserModel extends UserEntity {
       address: map['address'] ?? '',
       type: map['type'] ?? '',
       token: map['token'] ?? '',
-      cart: List<Map<String, dynamic>>.from(
-        map['cart']?.map(
-          (x) => Map<String, dynamic>.from(x),
-        ),
-      ),
+      cart: List<CartModel>.from(map['cart']?.map(
+        (x) => CartModel.fromMap(x),
+      )),
     );
   }
 
@@ -57,7 +57,7 @@ class UserModel extends UserEntity {
     String? address,
     String? type,
     String? token,
-    List<dynamic>? cart,
+    List<CartModel>? cart,
   }) {
     return UserModel(
       id: id ?? this.id,

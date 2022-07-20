@@ -5,6 +5,7 @@ import 'package:amazon_clone/features/admin/domain/entity/product_entity.dart';
 import 'package:amazon_clone/features/admin/presentation/screens/add_product_screen.dart';
 import 'package:amazon_clone/features/admin/presentation/screens/admin_screen.dart';
 import 'package:amazon_clone/features/auth/presentation/cubit/user_detail_cubit.dart';
+import 'package:amazon_clone/features/cart/presentation/cubit/cart_services_cubit.dart';
 import 'package:amazon_clone/features/home/presentation/cubit/home_services_cubit.dart';
 import 'package:amazon_clone/features/product_details/presentation/cubit/product_details_services_cubit.dart';
 import 'package:amazon_clone/features/product_details/presentation/screens/product_details_screen.dart';
@@ -25,6 +26,7 @@ import 'features/auth/auth_injection_container.dart' as auth;
 import 'features/admin/admin_injection_container.dart' as admin;
 import 'features/home/home_injection_container.dart' as home;
 import 'features/search/search_injection_container.dart' as search;
+import 'features/cart/cart_injection_container.dart' as cart;
 import 'features/product_details/product_details_injection_container.dart'
     as product_details;
 import '/injection_container.dart' as sl;
@@ -67,6 +69,13 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
           ),
           BlocProvider<BottomNavCubit>(
             create: (context) => sl.sl<BottomNavCubit>()..setPage(0),
+          ),
+          BlocProvider<CartServicesCubit>(
+            create: (context) => cart.cart<CartServicesCubit>(),
+          ),
+          BlocProvider<ProductDetailsServicesCubit>(
+            create: (context) =>
+                product_details.productDetails<ProductDetailsServicesCubit>(),
           ),
         ], child: BottomBar()),
       );

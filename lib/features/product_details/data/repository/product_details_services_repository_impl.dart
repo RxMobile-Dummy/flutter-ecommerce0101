@@ -2,7 +2,7 @@ import 'package:amazon_clone/base/error/failures.dart';
 import 'package:amazon_clone/features/auth/data/model/user_model.dart';
 import 'package:amazon_clone/features/auth/domain/entity/user_entity.dart';
 import 'package:dartz/dartz.dart';
-import '../../domain/repository/product_repository_services_repository.dart';
+import '../../domain/repository/product_details_services_repository.dart';
 import '../datasource/product_details_services_datasource.dart';
 
 class ProductDetailsServicesRepositoryImpl

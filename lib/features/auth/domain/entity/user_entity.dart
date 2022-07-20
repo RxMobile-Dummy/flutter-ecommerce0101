@@ -1,3 +1,5 @@
+import 'package:amazon_clone/features/cart/domain/entity/cart_entity.dart';
+
 class UserEntity {
   final String? name;
   final String? email;
@@ -6,7 +8,7 @@ class UserEntity {
   final String? address;
   final String? type;
   final String? token;
-  final List<dynamic>? cart;
+  final List<CartEntity>? cart;
   UserEntity(
       {this.name,
       this.email,

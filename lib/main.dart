@@ -13,6 +13,8 @@ import 'package:amazon_clone/features/search/search_injection_container.dart'
     as search;
 import 'package:amazon_clone/features/product_details/product_details_injection_container.dart'
     as product_details;
+import 'package:amazon_clone/features/cart/cart_injection_container.dart'
+    as cart;
 import 'package:amazon_clone/injection_container.dart' as sl;
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -38,6 +40,7 @@ Future<void> main() async {
   await home.init();
   await search.init();
   await product_details.init();
+  await cart.init();
 
   runApp(const MyApp());
 }
@@ -51,7 +54,7 @@ class MyApp extends StatelessWidget {
       create: (context) => auth.auth<UserDetailCubit>()..getUserData(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
+        title: GlobalVariables.amazon,
         theme: ThemeData(
           //set color for widgets like buttons, appbar
           colorScheme: const ColorScheme.light(

@@ -6,6 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../constants/global_variables.dart';
 import '../../../features/account/presentation/screens/account_screen.dart';
 
+import '../../../features/auth/presentation/cubit/user_detail_cubit.dart';
+import '../../../features/cart/presentation/screens/cart_screen.dart';
 import '../../../features/home/presentation/screens/home_screen.dart';
 import '../cubit/bottom_nav_cubit.dart';
 
@@ -15,8 +17,7 @@ class BottomBar extends StatelessWidget {
   List<Widget> pages = [
     const HomeScreen(),
     const AccountScreen(),
-    const Center(child: Text('Cart')),
-    //const CartScreen(),
+    const CartScreen(),
   ];
 
   void updatePage(int page, BuildContext context) {
@@ -25,9 +26,6 @@ class BottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final userCartLen = (context.read<UserDetailCubit>().state as Authenticated)
-    //     .userEntity.cart.length;
-
     return BlocBuilder<BottomNavCubit, BaseState>(
       builder: (context, state) {
         if (state is StateOnSuccess) {
@@ -95,13 +93,28 @@ class BottomBar extends StatelessWidget {
                         ),
                       ),
                     ),
-                    child: Badge(
-                      elevation: 0,
-                      // badgeContent: Text(userCartLen.toString()),
-                      badgeColor: Colors.white,
-                      child: const Icon(
-                        Icons.shopping_cart_outlined,
-                      ),
+                    child: BlocBuilder<UserDetailCubit, BaseState>(
+                      builder: (context, state) {
+                        return Badge(
+                          elevation: 0,
+                          badgeContent: (context.read<UserDetailCubit>().state
+                                      as Authenticated)
+                                  .userEntity
+                                  .cart!
+                                  .isEmpty
+                              ? null
+                              : Text((context.read<UserDetailCubit>().state
+                                      as Authenticated)
+                                  .userEntity
+                                  .cart!
+                                  .length
+                                  .toString()),
+                          badgeColor: Colors.white,
+                          child: const Icon(
+                            Icons.shopping_cart_outlined,
+                          ),
+                        );
+                      },
                     ),
                   ),
                   label: '',

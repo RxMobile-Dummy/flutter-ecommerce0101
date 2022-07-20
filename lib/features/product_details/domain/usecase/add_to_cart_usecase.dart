@@ -1,7 +1,7 @@
 import 'package:amazon_clone/base/error/failures.dart';
 import 'package:amazon_clone/core/usecases/usecase.dart';
 import 'package:amazon_clone/features/auth/domain/entity/user_entity.dart';
-import 'package:amazon_clone/features/product_details/domain/repository/product_repository_services_repository.dart';
+import 'package:amazon_clone/features/product_details/domain/repository/product_details_services_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 

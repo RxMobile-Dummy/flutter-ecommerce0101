@@ -43,6 +43,6 @@ class ProductDetailsServicesCubit extends Cubit<BaseState> {
         .call(Params8(userEntity: userEntity, productId: productId))!
         .then((value) => value!.fold(
             (l) => emit(StateErrorGeneral(l.message ?? '')),
-            (r) => emit(StateOnAddCartSuccess(r))));
+            (r) => emit(StateOnCartSuccess(r))));
   }
 }

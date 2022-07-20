@@ -110,7 +110,7 @@ class ProductDetailScreen extends StatelessWidget {
       ),
       body: BlocListener<ProductDetailsServicesCubit, BaseState>(
         listener: (context, state) {
-          if (state is StateOnAddCartSuccess) {
+          if (state is StateOnCartSuccess) {
             BlocProvider.of<UserDetailCubit>(context)
                 .setData(state.response as UserEntity);
           } else if (state is StateOnSuccess) {
