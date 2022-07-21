@@ -15,6 +15,10 @@ import 'package:amazon_clone/features/product_details/product_details_injection_
     as product_details;
 import 'package:amazon_clone/features/cart/cart_injection_container.dart'
     as cart;
+import 'package:amazon_clone/features/address/address_injection_container.dart'
+    as address;
+import 'package:amazon_clone/features/account/account_injection_container.dart'
+    as account;
 import 'package:amazon_clone/injection_container.dart' as sl;
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -41,6 +45,8 @@ Future<void> main() async {
   await search.init();
   await product_details.init();
   await cart.init();
+  await address.init();
+  await account.init();
 
   runApp(const MyApp());
 }

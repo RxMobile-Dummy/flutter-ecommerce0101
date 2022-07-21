@@ -15,6 +15,11 @@ abstract class AdminServicesDataSource {
     String category,
     List<File> images,
   );
+  Future<Either<Failure, String>> changeOrderStatus(
+    int status,
+    OrderModel order,
+    String token,
+  );
 
   Future<Either<Failure, List<ProductModel>>> fetchAllProducts(String token);
   Future<Either<Failure, String>> deleteProduct(

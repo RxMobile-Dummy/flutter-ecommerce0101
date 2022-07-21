@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:amazon_clone/base/error/failures.dart';
 import 'package:amazon_clone/features/admin/data/datasource/admin_services_datasource.dart';
+import 'package:amazon_clone/features/admin/data/model/order_model.dart';
 import 'package:amazon_clone/features/admin/data/model/product_model.dart';
 import 'package:amazon_clone/features/admin/domain/entity/order_entity.dart';
 import 'package:amazon_clone/features/admin/domain/entity/product_entity.dart';
@@ -42,4 +43,10 @@ class AdminServicesRepositoryImpl extends AdminServicesRepository {
   Future<Either<Failure, List<OrderEntity>>> fetchAllOrders(
           String token) async =>
       await adminServicesDataSource.fetchAllOrders(token);
+
+  @override
+  Future<Either<Failure, String>> changeOrderStatus(
+          int status, OrderEntity order, String token) async =>
+      await adminServicesDataSource.changeOrderStatus(
+          status, order as OrderModel, token);
 }

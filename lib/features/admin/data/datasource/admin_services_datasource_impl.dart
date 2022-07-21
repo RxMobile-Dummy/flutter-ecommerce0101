@@ -157,4 +157,32 @@ class AdminServicesDataSourceImpl extends AdminServicesDataSource {
       return Left(ServerFailure(message: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, String>> changeOrderStatus(
+      int status, OrderModel order, String token) async {
+    try {
+      http.Response response = await http.post(
+        Uri.parse('${GlobalVariables.uri}/admin/change-order-status'),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'x-auth-token': token,
+        },
+        body: jsonEncode({
+          'id': order.id,
+          'status': status,
+        }),
+      );
+      if (response.statusCode == 200) {
+        debugPrint(response.statusCode.toString());
+        return const Right(GlobalVariables.orderStatusSuccess);
+      } else {
+        debugPrint(response.statusCode.toString());
+        return Left(ServerFailure(message: getError(response)));
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+      return Left(ServerFailure(message: e.toString()));
+    }
+  }
 }

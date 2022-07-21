@@ -9,4 +9,6 @@ class RoutesName {
   static const String categoryDealsScreen = '/category-deals';
   static const String searchScreen = '/search-screen';
   static const String productDetails = '/product-details';
+  static const String addressScreen = '/address-screen';
+  static const String orderDetails = '/order-details';
 }

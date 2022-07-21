@@ -82,6 +82,15 @@ class StateOnSuccess<T> extends BaseState {
   List<Object?> get props => [response];
 }
 
+class StateOnOrderSuccess<T> extends BaseState {
+  final T response;
+
+  StateOnOrderSuccess(this.response);
+
+  @override
+  List<Object?> get props => [response];
+}
+
 class StateOnCartSuccess<T> extends BaseState {
   final T response;
 

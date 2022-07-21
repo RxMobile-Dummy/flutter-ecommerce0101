@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:amazon_clone/base/base_state.dart';
 import 'package:amazon_clone/features/admin/domain/entity/order_entity.dart';
 import 'package:amazon_clone/features/admin/domain/entity/product_entity.dart';
+import 'package:amazon_clone/features/admin/domain/usecase/change_order_status_usecase.dart';
 import 'package:amazon_clone/features/admin/domain/usecase/fetch_all_orders_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,13 +16,23 @@ class AdminServicesCubit extends Cubit<BaseState> {
   final FetchAllProducts fetchAllProducts;
   final FetchAllOrdersUseCase fetchAllOrdersUseCase;
   final DeleteProductUseCase deleteProductUseCase;
+  final ChangeOrderStatusUseCase changeOrderStatusUseCase;
   late List<ProductEntity> _list;
   AdminServicesCubit(
-      {required this.fetchAllOrdersUseCase,
+      {required this.changeOrderStatusUseCase,
+      required this.fetchAllOrdersUseCase,
       required this.deleteProductUseCase,
       required this.fetchAllProducts,
       required this.sellProductUseCase})
       : super(StateInitial());
+
+  changeOrderStatus(String token, OrderEntity orderEntity, int status) {
+    changeOrderStatusUseCase
+        .call(Params11(orderEntity: orderEntity, token: token, status: status))!
+        .then((value) => value!.fold(
+            (l) => emit(StateErrorGeneral(l.message ?? '')),
+            (r) => emit(StateOnOrderSuccess<String>(r))));
+  }
 
   sellProduct(String token, String name, String description, double price,
       double quantity, List<File> images, String category) {

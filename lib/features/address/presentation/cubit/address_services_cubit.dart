@@ -1,4 +1,5 @@
 import 'package:amazon_clone/base/base_state.dart';
+import 'package:amazon_clone/constants/global_variables.dart';
 import 'package:amazon_clone/features/address/domain/usecase/delete_product_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,16 +19,19 @@ class AddressServicesCubit extends Cubit<BaseState> {
   final TextEditingController cityController = TextEditingController();
   String addressToBeUsed = "";
   List<PaymentItem> paymentItems = [];
+  double totalAmount = 0.0;
   AddressServicesCubit(
       {required this.deleteProductUseCase,
       required this.placeOrderUseCase,
       required this.saveUserAddressUseCase})
       : super(StateInitial());
-  paymentInit(String totalAmount) {
+
+  paymentInit(String totalAmounts) {
+    totalAmount = double.parse(totalAmounts);
     paymentItems.add(
       PaymentItem(
-        amount: totalAmount,
-        label: 'Total Amount',
+        amount: totalAmounts,
+        label: GlobalVariables.totalAmount,
         status: PaymentItemStatus.final_price,
       ),
     );
@@ -41,21 +45,44 @@ class AddressServicesCubit extends Cubit<BaseState> {
             (r) => emit(StateOnSuccess(r))));
   }
 
-  placeOrder(UserEntity userEntity, double totalSum, String address) {
+  placeOrder(UserEntity userEntity) {
     placeOrderUseCase
         .call(Params9(
-            userEntity: userEntity, totalSum: totalSum, address: address))!
+            userEntity: userEntity,
+            totalSum: totalAmount,
+            address: addressToBeUsed))!
         .then((value) => value!.fold(
             (l) => emit(StateErrorGeneral(l.message ?? '')),
-            (r) => emit(StateOnSuccess<UserEntity>(r))));
+            (r) => emit(StateOnOrderSuccess<UserEntity>(r))));
   }
 
-  saveUserAddress(UserEntity userEntity, String address) {
+  payPressed(String addressFromProvider, GlobalKey<FormState> key) {
+    addressToBeUsed = "";
+    bool isForm = flatBuildingController.text.isNotEmpty ||
+        areaController.text.isNotEmpty ||
+        pincodeController.text.isNotEmpty ||
+        cityController.text.isNotEmpty;
+    if (isForm) {
+      if (key.currentState!.validate()) {
+        addressToBeUsed =
+            '${flatBuildingController.text}, ${areaController.text}, ${cityController.text} - ${pincodeController.text}';
+      } else {
+        throw Exception(GlobalVariables.pleaseEnter);
+      }
+    } else if (addressFromProvider.isNotEmpty) {
+      addressToBeUsed = addressFromProvider;
+    } else {
+      //snack bar
+
+    }
+  }
+
+  saveUserAddress(UserEntity userEntity) {
     saveUserAddressUseCase
-        .call(Params9(userEntity: userEntity, address: address))!
+        .call(Params9(userEntity: userEntity, address: addressToBeUsed))!
         .then((value) => value!.fold(
             (l) => emit(StateErrorGeneral(l.message ?? '')),
-            (r) => emit(StateOnSuccess<UserEntity>(r))));
+            (r) => emit(StateOnOrderSuccess<UserEntity>(r))));
   }
 
   @override

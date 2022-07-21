@@ -90,13 +90,23 @@ class GlobalVariables {
   static const freeShipping = 'Eligible for Shipping';
   static const productAddSuccess = 'Product Added Successfully!';
   static const productDeleteSuccess = 'Product Delete Successfully!';
+  static const orderStatusSuccess = 'Changed Order Status!';
   static const dealPrice = 'Deal Price: ';
   static const buyNow = 'Buy Now';
   static const rateTheProduct = 'Rate The Product';
   static const addToCart = 'Add to Cart';
   static const subtotal = 'Subtotal ';
+  static const orderEmpty = 'Order is Empty';
+  static const totalAmount = 'Total Amount';
+  static const done = 'Done';
   static const deleteProductSuccess = 'Product deleted successfully';
   static const ratingSuccess = 'Thanks for rating';
+  static const addressLoc = 'Flat, House no, Building';
+  static const street = 'Area, Street';
+  static const pinCode = 'Pin code';
+  static const city = 'Town/City';
+  static const or = 'OR';
+  static const pleaseEnter = 'Please enter all the values!';
   static const accountSuccess =
       'Account created! Login with the same credentials!';
 

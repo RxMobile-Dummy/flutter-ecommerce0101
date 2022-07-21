@@ -1,6 +1,7 @@
 import 'package:amazon_clone/common/presentation/cubit/bottom_nav_cubit.dart';
 import 'package:amazon_clone/common/presentation/widgets/bottom_bar.dart';
 import 'package:amazon_clone/constants/global_variables.dart';
+import 'package:amazon_clone/features/address/presentation/cubit/address_services_cubit.dart';
 import 'package:amazon_clone/features/admin/domain/entity/product_entity.dart';
 import 'package:amazon_clone/features/admin/presentation/screens/add_product_screen.dart';
 import 'package:amazon_clone/features/admin/presentation/screens/admin_screen.dart';
@@ -16,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'base/base_state.dart';
+import 'features/address/presentation/screens/address_screen.dart';
 import 'features/admin/presentation/cubit/admin_services_cubit.dart';
 import 'features/admin/presentation/cubit/get_product_categories_cubit.dart';
 import 'features/admin/presentation/cubit/select_image_cubit.dart';
@@ -27,6 +29,7 @@ import 'features/admin/admin_injection_container.dart' as admin;
 import 'features/home/home_injection_container.dart' as home;
 import 'features/search/search_injection_container.dart' as search;
 import 'features/cart/cart_injection_container.dart' as cart;
+import 'features/address/address_injection_container.dart' as address;
 import 'features/product_details/product_details_injection_container.dart'
     as product_details;
 import '/injection_container.dart' as sl;
@@ -189,7 +192,26 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
           ),
         ),
       );
-
+    case RoutesName.addressScreen:
+      var totalAmount = routeSettings.arguments as String;
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => BlocProvider<AddressServicesCubit>(
+          create: (context) =>
+              address.address<AddressServicesCubit>()..paymentInit(totalAmount),
+          child: AddressScreen(),
+        ),
+      );
+    // case RoutesName.orderDetails:
+    //   var order = routeSettings.arguments as OrderEntity;
+    //   return MaterialPageRoute(
+    //     settings: routeSettings,
+    //     builder: (_) => BlocProvider<AddressServicesCubit>(
+    //       create: (context) =>
+    //       address.address<AddressServicesCubit>()..paymentInit(order),
+    //       child: AddressScreen(),
+    //     ),
+    //   );
     default:
       return MaterialPageRoute(
         settings: routeSettings,
