@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class GlobalVariables {
-  static const uri = 'http://192.168.101.159:3000';
+  static const uri = 'https://068b-180-211-112-179.in.ngrok.io';
   // COLORS
   static const appBarGradient = LinearGradient(
     colors: [
@@ -65,12 +65,23 @@ class GlobalVariables {
   static const turnSeller = 'Turn Seller';
   static const wishList = 'Your Wish List';
   static const logOut = 'Log Out';
+  static const logOutSuccess = 'Log out successfully';
   static const seeAll = 'See all';
   static const search = 'Search Amazon.in';
   static const dealOfTheDay = 'Deal of the day';
   static const hundred = '\$100';
   static const vivek = 'Vivek';
+  static const viewOrderDetails = 'View order details';
+  static const purchaseDetails = 'Purchase Details';
+  static const tracking = 'Tracking';
+  static const pending = 'Pending';
+  static const received = 'Received';
   static const admin = 'Admin';
+  static const yetDelivered = 'Your order is yet to be delivered';
+  static const delivered = 'Delivered';
+  static const yetToSign = 'Your order has been delivered, you are yet to sign.';
+  static const signedByYou = 'Your order has been delivered and signed by you.';
+  static const completed = 'Completed';
   static const seeAllDeals = 'See all deals';
   static const addProduct = 'Add a Product';
   static const mobiles = 'Mobiles';

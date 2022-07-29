@@ -41,14 +41,16 @@ class AddressServicesDataSourceImpl extends AddressServicesDataSource {
   Future<Either<Failure, UserModel>> placeOrder(
       String address, double totalSum, UserModel userModel) async {
     try {
+      print(userModel.toMap()['cart']);
       http.Response response =
           await http.post(Uri.parse('${GlobalVariables.uri}/api/order'),
               headers: {
                 'Content-Type': 'application/json; charset=UTF-8',
                 'x-auth-token': userModel.token!,
               },
+
               body: jsonEncode({
-                'cart': userModel.cart,
+                'cart':userModel.toMap()['cart'],
                 'address': address,
                 'totalPrice': totalSum,
               }));

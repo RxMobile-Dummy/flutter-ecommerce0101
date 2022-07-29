@@ -9,7 +9,8 @@ class BottomNavCubit extends Cubit<BaseState> {
   BottomNavCubit({required this.changePageUseCase}) : super(StateInitial());
 
   setPage(int page) {
-    changePageUseCase.call(Params3(page: page))!.then((value) =>
-        value!.fold((l) => null, (r) => emit(StateOnSuccess<int>(r))));
+    changePageUseCase.call(Params3(page: page))!.then((value) => value!.fold(
+        (l) => emit(StateOnSuccess<int>(0)),
+        (r) => emit(StateOnSuccess<int>(r))));
   }
 }

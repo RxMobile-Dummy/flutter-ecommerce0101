@@ -190,6 +190,7 @@ class AddressScreen extends StatelessWidget {
                           paymentItems:
                               context.read<AddressServicesCubit>().paymentItems,
                           height: 50,
+                          width: double.infinity,
                           style: GooglePayButtonStyle.black,
                           type: GooglePayButtonType.buy,
                           margin: const EdgeInsets.only(top: 15),

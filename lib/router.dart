@@ -8,6 +8,7 @@ import 'package:amazon_clone/features/admin/presentation/screens/admin_screen.da
 import 'package:amazon_clone/features/auth/presentation/cubit/user_detail_cubit.dart';
 import 'package:amazon_clone/features/cart/presentation/cubit/cart_services_cubit.dart';
 import 'package:amazon_clone/features/home/presentation/cubit/home_services_cubit.dart';
+import 'package:amazon_clone/features/order_details/cubit/order_details_cubit.dart';
 import 'package:amazon_clone/features/product_details/presentation/cubit/product_details_services_cubit.dart';
 import 'package:amazon_clone/features/product_details/presentation/screens/product_details_screen.dart';
 import 'package:amazon_clone/features/search/presentation/cubit/search_services_cubit.dart';
@@ -18,6 +19,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'base/base_state.dart';
 import 'features/address/presentation/screens/address_screen.dart';
+import 'features/admin/domain/entity/order_entity.dart';
 import 'features/admin/presentation/cubit/admin_services_cubit.dart';
 import 'features/admin/presentation/cubit/get_product_categories_cubit.dart';
 import 'features/admin/presentation/cubit/select_image_cubit.dart';
@@ -27,6 +29,7 @@ import 'features/auth/presentation/cubit/auth_service_cubit.dart';
 import 'features/auth/auth_injection_container.dart' as auth;
 import 'features/admin/admin_injection_container.dart' as admin;
 import 'features/home/home_injection_container.dart' as home;
+import 'features/order_details/screens/order_details.dart';
 import 'features/search/search_injection_container.dart' as search;
 import 'features/cart/cart_injection_container.dart' as cart;
 import 'features/address/address_injection_container.dart' as address;
@@ -76,6 +79,9 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
           BlocProvider<CartServicesCubit>(
             create: (context) => cart.cart<CartServicesCubit>(),
           ),
+          BlocProvider<AdminServicesCubit>(
+            create: (context) => admin.admin<AdminServicesCubit>(),
+          ),
           BlocProvider<ProductDetailsServicesCubit>(
             create: (context) =>
                 product_details.productDetails<ProductDetailsServicesCubit>(),
@@ -92,10 +98,7 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
           ),
           BlocProvider<AdminServicesCubit>(
               create: (context) => admin.admin<
-                  AdminServicesCubit>() /*..fetchAllProduct((context.read<UserDetailCubit>().state as Authenticated)
-                      .userEntity
-                      .token
-                      .toString()),*/
+                  AdminServicesCubit>()
               ),
         ], child: AdminScreen()),
       );
@@ -196,22 +199,35 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
       var totalAmount = routeSettings.arguments as String;
       return MaterialPageRoute(
         settings: routeSettings,
-        builder: (_) => BlocProvider<AddressServicesCubit>(
-          create: (context) =>
-              address.address<AddressServicesCubit>()..paymentInit(totalAmount),
+        builder: (_) => MultiBlocProvider(
+          providers: [
+            BlocProvider<AddressServicesCubit>(
+              create: (context) => address.address<AddressServicesCubit>()
+                ..paymentInit(totalAmount),
+            ),
+            BlocProvider<CartServicesCubit>(
+              create: (context) => cart.cart<CartServicesCubit>(),
+            ),
+          ],
           child: AddressScreen(),
         ),
       );
-    // case RoutesName.orderDetails:
-    //   var order = routeSettings.arguments as OrderEntity;
-    //   return MaterialPageRoute(
-    //     settings: routeSettings,
-    //     builder: (_) => BlocProvider<AddressServicesCubit>(
-    //       create: (context) =>
-    //       address.address<AddressServicesCubit>()..paymentInit(order),
-    //       child: AddressScreen(),
-    //     ),
-    //   );
+    case RoutesName.orderDetails:
+      var order = routeSettings.arguments as OrderEntity;
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => MultiBlocProvider(
+          providers: [
+            BlocProvider<OrderDetailsCubit>(
+              create: (context) => OrderDetailsCubit()..initStep(order),
+            ),
+            BlocProvider<AdminServicesCubit>(
+              create: (context) => admin.admin<AdminServicesCubit>(),
+            ),
+          ],
+          child: const OrderDetailScreen(),
+        ),
+      );
     default:
       return MaterialPageRoute(
         settings: routeSettings,

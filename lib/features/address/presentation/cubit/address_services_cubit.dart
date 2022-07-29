@@ -73,7 +73,6 @@ class AddressServicesCubit extends Cubit<BaseState> {
       addressToBeUsed = addressFromProvider;
     } else {
       //snack bar
-
     }
   }
 

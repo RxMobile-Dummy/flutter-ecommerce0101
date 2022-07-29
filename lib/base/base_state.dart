@@ -81,7 +81,22 @@ class StateOnSuccess<T> extends BaseState {
   @override
   List<Object?> get props => [response];
 }
+class StateOnEarningSuccess<T> extends BaseState {
+  final T response;
 
+  StateOnEarningSuccess(this.response);
+
+  @override
+  List<Object?> get props => [response];
+}
+class StateOnAllOrderSuccess<T> extends BaseState {
+  final T response;
+
+  StateOnAllOrderSuccess(this.response);
+
+  @override
+  List<Object?> get props => [response];
+}
 class StateOnOrderSuccess<T> extends BaseState {
   final T response;
 
@@ -162,7 +177,14 @@ class StateErrorGeneral extends BaseState {
   @override
   List<Object?> get props => [errorMessage];
 }
+class StateOnLogoutSuccess extends BaseState {
+  final String message;
 
+  StateOnLogoutSuccess(this.message);
+
+  @override
+  List<Object?> get props => [message];
+}
 class StateErrorListGeneral extends BaseState {
   final List<String> errorMessage;
 
