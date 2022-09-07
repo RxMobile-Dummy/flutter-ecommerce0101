@@ -16,6 +16,7 @@ import 'domain/usecase/change_order_status_usecase.dart';
 import 'domain/usecase/delete_product_usecase.dart';
 import 'domain/usecase/fetch_all_orders_usecase.dart';
 import 'domain/usecase/fetch_all_products_usecase.dart';
+import 'domain/usecase/get_earnings_usecase.dart';
 import 'domain/usecase/get_product_categories_usecase.dart';
 import 'domain/usecase/sell_product_usecase.dart';
 
@@ -35,7 +36,8 @@ Future<void> init() async {
         fetchAllProducts: admin(),
         deleteProductUseCase: admin(),
         fetchAllOrdersUseCase: admin(),
-        changeOrderStatusUseCase: admin()),
+        changeOrderStatusUseCase: admin(),
+        getEarningsUseCase: admin()),
   );
   // Use cases
   sl.registerLazySingleton(() =>
@@ -50,6 +52,8 @@ Future<void> init() async {
       () => FetchAllOrdersUseCase(adminServicesRepository: admin()));
   sl.registerLazySingleton(
       () => ChangeOrderStatusUseCase(adminServicesRepository: admin()));
+  sl.registerLazySingleton(
+      () => GetEarningsUseCase(adminServicesRepository: admin()));
   // Repository
   sl.registerLazySingleton<GetProductCategoriesRepository>(
     () => GetProductCategoriesRepositoryImpl(

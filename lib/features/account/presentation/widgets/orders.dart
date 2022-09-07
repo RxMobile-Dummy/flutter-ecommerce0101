@@ -57,8 +57,9 @@ class Orders extends StatelessWidget {
                   ),
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: 2,
+                    itemCount:  state.response.length,
                     itemBuilder: (context, index) {
+                      debugPrint(state.response![index].toString());
                       return GestureDetector(
                         onTap: () {
                           Navigator.pushNamed(

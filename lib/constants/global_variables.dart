@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class GlobalVariables {
-  static const uri = 'https://068b-180-211-112-179.in.ngrok.io';
+  static const uri = 'https://ded2-180-211-112-179.in.ngrok.io';
   // COLORS
   static const appBarGradient = LinearGradient(
     colors: [
@@ -56,6 +56,7 @@ class GlobalVariables {
   static const welcome = "Welcome";
   static const createAccount = "Create Account";
   static const signIn = "Sign-In.";
+  static const user = "User";
   static const signInButton = "Sign In";
   static const email = "Email";
   static const name = "Name";

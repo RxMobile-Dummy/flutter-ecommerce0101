@@ -40,7 +40,10 @@ class UserModel extends UserEntity {
       'address': address,
       'type': type,
       'token': token,
-      'cart': cart,
+      'cart': List<Map<String,dynamic>>.from(cart!.map((e) {
+         CartModel cart = e as CartModel;
+        return cart.toMap();
+      })),
     };
   }
 

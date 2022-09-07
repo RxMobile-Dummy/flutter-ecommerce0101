@@ -30,19 +30,19 @@ class _OrdersScreenState extends State<OrdersScreen> {
   Widget build(BuildContext context) {
     return BlocBuilder<AdminServicesCubit, BaseState>(
       builder: (context, state) {
-        if (state is StateOnSuccess) {
+        if (state is StateOnAllOrderSuccess) {
           return GridView.builder(
             itemCount: state.response!.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2),
             itemBuilder: (context, index) {
               final orderData = state.response![index];
-              debugPrint(orderData.toString());
+              debugPrint("orderData : ${orderData.toString()}");
               return GestureDetector(
                 onTap: () {
                   Navigator.pushNamed(
                     context,
-                    RoutesName.orderDetailScreen,
+                    RoutesName.orderDetails,
                     arguments: orderData,
                   );
                 },

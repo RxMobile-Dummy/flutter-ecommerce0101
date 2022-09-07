@@ -5,6 +5,8 @@ import 'package:amazon_clone/features/admin/data/model/order_model.dart';
 import 'package:amazon_clone/features/admin/data/model/product_model.dart';
 import 'package:dartz/dartz.dart';
 
+import '../model/earning_model.dart';
+
 abstract class AdminServicesDataSource {
   Future<Either<Failure, String>> sellProduct(
     String token,
@@ -15,12 +17,14 @@ abstract class AdminServicesDataSource {
     String category,
     List<File> images,
   );
-  Future<Either<Failure, String>> changeOrderStatus(
-    int status,
-    OrderModel order,
+  Future<Either<Failure, Earning>> getEarnings(
     String token,
   );
-
+  Future<Either<Failure, String>> changeOrderStatus(
+      int status,
+      OrderModel order,
+      String token,
+      );
   Future<Either<Failure, List<ProductModel>>> fetchAllProducts(String token);
   Future<Either<Failure, String>> deleteProduct(
       String token, ProductModel productModel);

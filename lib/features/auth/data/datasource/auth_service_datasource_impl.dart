@@ -17,16 +17,16 @@ import 'package:http/http.dart' as http;
 class AuthServiceDataSourceImpl extends AuthServiceDataSource {
   @override
   Future<Either<Failure, String>> signUpUser(
-      String email, String password, String name) async {
+      String email, String password, String name,String userType) async {
     try {
       UserModel userModel = UserModel(
           name: name,
           email: email,
           password: password,
           id: '',
-          type: '',
+          type: userType,
           token: '',
-          address: '');
+          address: '',cart: []);
       http.Response response = await http.post(
         Uri.parse("${GlobalVariables.uri}/api/signup"),
         body: userModel.toJson(),
@@ -49,13 +49,14 @@ class AuthServiceDataSourceImpl extends AuthServiceDataSource {
 
   @override
   Future<Either<Failure, UserModel>> signInUser(
-      String email, String password) async {
+      String email, String password,String userType) async {
     try {
       http.Response response = await http.post(
         Uri.parse("${GlobalVariables.uri}/api/signin"),
         body: jsonEncode({
           'email': email,
           'password': password,
+          'type' : userType
         }),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',

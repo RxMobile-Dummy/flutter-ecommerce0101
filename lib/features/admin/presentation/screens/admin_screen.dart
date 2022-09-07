@@ -3,22 +3,42 @@ import 'package:amazon_clone/common/presentation/cubit/bottom_nav_cubit.dart';
 import 'package:amazon_clone/features/admin/presentation/screens/posts_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../constants/global_variables.dart';
+import 'analtyics_screen.dart';
+import 'orders_screen.dart';
 
 class AdminScreen extends StatelessWidget {
   AdminScreen({Key? key}) : super(key: key);
 
   List<Widget> pages = [
     const PostsScreen(),
-    const Center(
-      child: Text("AnalyticsScreen"),
-    ),
-    const Center(
-      child: Text("OrdersScreen"),
-    ),
-    //const OrdersScreen(),
-    // const AnalyticsScreen(),
+    const AnalyticsScreen(),
+    const OrdersScreen(),
+    // BlocProvider<AdminServicesCubit>(
+    //   create: (context) => admin.admin<AdminServicesCubit>()
+    //     ..fetchAllProduct(
+    //         (context.read<UserDetailCubit>().state as Authenticated)
+    //             .userEntity
+    //             .token
+    //             .toString()),
+    //   child: const PostsScreen(),
+    // ),
+    // BlocProvider<AdminServicesCubit>(
+    //   create: (context) => admin.admin<AdminServicesCubit>()
+    //     ..getEarnings((context.read<UserDetailCubit>().state as Authenticated)
+    //         .userEntity
+    //         .token
+    //         .toString()),
+    //   child: const AnalyticsScreen(),
+    // ),
+    // BlocProvider<AdminServicesCubit>(
+    //   create: (context) => admin.admin<AdminServicesCubit>()
+    //     ..fetchAllOrder((context.read<UserDetailCubit>().state as Authenticated)
+    //         .userEntity
+    //         .token
+    //         .toString()),
+    //   child: const OrdersScreen(),
+    // ),
   ];
 
   void updatePage(int page, BuildContext context) {

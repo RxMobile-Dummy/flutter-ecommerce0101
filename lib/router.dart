@@ -23,7 +23,7 @@ import 'features/admin/domain/entity/order_entity.dart';
 import 'features/admin/presentation/cubit/admin_services_cubit.dart';
 import 'features/admin/presentation/cubit/get_product_categories_cubit.dart';
 import 'features/admin/presentation/cubit/select_image_cubit.dart';
-import 'features/auth/data/datasource/auth_manage_datasource_impl.dart';
+import 'features/auth/domain/entity/auth_manage.dart';
 import 'features/auth/presentation/cubit/auth_manage_cubit.dart';
 import 'features/auth/presentation/cubit/auth_service_cubit.dart';
 import 'features/auth/auth_injection_container.dart' as auth;

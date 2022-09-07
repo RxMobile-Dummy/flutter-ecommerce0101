@@ -1,16 +1,23 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../base/base_state.dart';
-import '../../data/datasource/auth_manage_datasource_impl.dart';
-import '../../domain/usecase/auth_manage_usecase.dart';
+import '../../domain/entity/auth_manage.dart';
 
 class AuthManageCubit extends Cubit<BaseState> {
-  final AuthManageUseCase authManageUseCase;
-
-  AuthManageCubit({required this.authManageUseCase}) : super(StateInitial());
-
+  AuthManageCubit() : super(StateInitial());
+  Auth _auth = Auth.signup;
+  UserType _userType = UserType.user;
+  bool _isObscure = false;
   changeAuth(Auth auth2) async {
-    authManageUseCase.call(Params(auth: auth2))!.then(
-        (value) => value!.fold((l) => null, (r) => emit(StateOnSuccess(r))));
+    _auth = auth2;
+    emit(StateOnSuccess<AuthManage>(AuthManage(auth: _auth, userType: _userType)));
+  }
+  isObscure(){
+    _isObscure =!_isObscure;
+    emit(StateOnSuccess<AuthManage>(AuthManage(auth: _auth, userType: _userType,isObscure: _isObscure)));
+  }
+  changeUserType(UserType userType2) {
+    _userType = userType2;
+    emit(StateOnSuccess<AuthManage>(AuthManage(auth: _auth, userType: _userType)));
   }
 }

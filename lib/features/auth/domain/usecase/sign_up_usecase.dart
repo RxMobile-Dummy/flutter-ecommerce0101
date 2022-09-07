@@ -12,16 +12,17 @@ class SignUpUseCase extends UseCase<String, Params1> {
   @override
   Future<Either<Failure, String>?>? call(Params1 params) =>
       authServiceRepository.signUpUser(
-          params.email, params.password, params.name);
+          params.email, params.password, params.name,params.userType);
 }
 
 class Params1 extends Equatable {
   final String email;
+  final String userType;
   final String name;
   final String password;
 
-  const Params1(this.email, this.name, this.password);
+  const Params1(this.email, this.name, this.password, this.userType);
 
   @override
-  List<Object?> get props => [email, name, password];
+  List<Object?> get props => [email, name, password,userType];
 }

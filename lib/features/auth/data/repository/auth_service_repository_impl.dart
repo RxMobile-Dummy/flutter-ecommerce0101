@@ -14,13 +14,13 @@ class AuthServiceRepositoryImpl extends AuthServiceRepository {
 
   @override
   Future<Either<Failure, String>> signUpUser(
-          String email, String password, String name) async =>
-      await authServiceDataSource.signUpUser(email, password, name);
+          String email, String password, String name,String userType) async =>
+      await authServiceDataSource.signUpUser(email, password, name,userType);
 
   @override
   Future<Either<Failure, UserModel>> signInUser(
-          String email, String password) async =>
-      await authServiceDataSource.signInUser(email, password);
+          String email, String password,String userType) async =>
+      await authServiceDataSource.signInUser(email, password,userType);
 
   @override
   Future<Either<Failure, UserEntity>> getUserData() async =>

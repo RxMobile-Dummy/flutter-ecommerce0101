@@ -9,7 +9,7 @@ import '../widgets/below_app_bar.dart';
 import '../widgets/orders.dart';
 import '../widgets/top_buttons.dart';
 import 'package:amazon_clone/features/account/account_injection_container.dart'
-    as account;
+as account;
 
 class AccountScreen extends StatelessWidget {
   const AccountScreen({Key? key}) : super(key: key);
@@ -59,12 +59,18 @@ class AccountScreen extends StatelessWidget {
         children: [
           const BelowAppBar(),
           const SizedBox(height: 10),
-          const TopButtons(),
+          BlocProvider<AccountServicesCubit>(
+            create: (context) => account.account<AccountServicesCubit>(),
+            child: const TopButtons(),
+          ),
           const SizedBox(height: 20),
           BlocProvider<AccountServicesCubit>(
-            create: (context) => account.account<AccountServicesCubit>()
+            create: (context) =>
+            account.account<AccountServicesCubit>()
               ..fetchOrders(
-                  (context.read<UserDetailCubit>().state as Authenticated)
+                  (context
+                      .read<UserDetailCubit>()
+                      .state as Authenticated)
                       .userEntity
                       .token
                       .toString()),

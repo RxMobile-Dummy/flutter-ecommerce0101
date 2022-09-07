@@ -4,4 +4,5 @@ import '../../../../base/error/failures.dart';
 
 abstract class AccountServicesRepository {
   Future<Either<Failure, List<OrderEntity>>> fetchMyOrders(String token);
+  Future<Either<Failure, String>> logOut();
 }

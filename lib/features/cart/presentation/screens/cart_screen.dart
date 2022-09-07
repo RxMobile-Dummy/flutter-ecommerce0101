@@ -29,7 +29,9 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<CartServicesCubit>(context).calculateSum(
-        (context.read<UserDetailCubit>().state as Authenticated).userEntity);
+        (context
+            .read<UserDetailCubit>()
+            .state as Authenticated).userEntity);
 
     return Scaffold(
       appBar: PreferredSize(
@@ -106,44 +108,52 @@ class CartScreen extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const AddressBox(),
-            const CartSubtotal(),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: BlocBuilder<UserDetailCubit, BaseState>(
-                builder: (context, state) {
-                  return CustomButton(
-                    text:
-                        'Proceed to Buy (${(context.read<UserDetailCubit>().state as Authenticated).userEntity.cart!.length} items)',
-                    onTap: () => navigateToAddress(
-                        context.read<CartServicesCubit>().sum, context),
-                    color: Colors.yellow[600],
-                  );
-                },
-              ),
-            ),
-            const SizedBox(height: 15),
-            Container(
-              color: Colors.black12.withOpacity(0.08),
-              height: 1,
-            ),
-            const SizedBox(height: 5),
-            ListView.builder(
-              itemCount:
-                  (context.read<UserDetailCubit>().state as Authenticated)
+        child: BlocBuilder<UserDetailCubit, BaseState>(
+          builder: (context, state) {
+            return Column(
+              children: [
+                const AddressBox(),
+                const CartSubtotal(),
+                Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: CustomButton(
+                      text:
+                      'Proceed to Buy (${(context
+                          .read<UserDetailCubit>()
+                          .state as Authenticated).userEntity.cart!
+                          .length} items)',
+                      onTap: () =>
+                          navigateToAddress(
+                              context
+                                  .read<CartServicesCubit>()
+                                  .sum, context),
+                      color: Colors.yellow[600],
+                    ),
+                ),
+                const SizedBox(height: 15),
+                Container(
+                  color: Colors.black12.withOpacity(0.08),
+                  height: 1,
+                ),
+                const SizedBox(height: 5),
+                ListView.builder(
+                  itemCount:
+                  (context
+                      .read<UserDetailCubit>()
+                      .state as Authenticated)
                       .userEntity
                       .cart!
                       .length,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return CartProduct(
-                  index: index,
-                );
-              },
-            ),
-          ],
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return CartProduct(
+                      index: index,
+                    );
+                  },
+                ),
+              ],
+            );
+          },
         ),
       ),
     );

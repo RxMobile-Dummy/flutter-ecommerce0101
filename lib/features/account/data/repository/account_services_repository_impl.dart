@@ -12,4 +12,8 @@ class AccountServicesRepositoryImpl extends AccountServicesRepository {
   @override
   Future<Either<Failure, List<OrderModel>>> fetchMyOrders(String token) async =>
       await accountServicesDataSource.fetchMyOrders(token);
+
+  @override
+  Future<Either<Failure, String>> logOut() async =>
+      await accountServicesDataSource.logOut();
 }

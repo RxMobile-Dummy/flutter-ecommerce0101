@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:amazon_clone/base/error/failures.dart';
 import 'package:amazon_clone/constants/global_variables.dart';
+import 'package:amazon_clone/features/admin/data/model/earning_model.dart';
 import 'package:amazon_clone/features/admin/data/model/order_model.dart';
 import 'package:amazon_clone/features/admin/data/model/product_model.dart';
 import 'package:cloudinary_public/cloudinary_public.dart';
@@ -11,6 +12,7 @@ import 'package:http/http.dart' as http;
 import 'package:dartz/dartz.dart';
 
 import '../../../../base/error/error_handaling.dart';
+import '../model/sales.dart';
 import 'admin_services_datasource.dart';
 
 class AdminServicesDataSourceImpl extends AdminServicesDataSource {
@@ -67,6 +69,38 @@ class AdminServicesDataSourceImpl extends AdminServicesDataSource {
     }
   }
 
+/*  @override
+  Future<Either<Failure, List<ProductModel>>> fetchAllProducts(
+      String token) async {
+    List<ProductModel> productList = [];
+    try {
+      http.Response response = await http.get(
+          Uri.parse('${GlobalVariables.uri}/admin/get-products'),
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+            'x-auth-token': token,
+          });
+      if (response.statusCode == 200) {
+        debugPrint(response.statusCode.toString());
+        for (int i = 0; i < jsonDecode(response.body).length; i++) {
+          productList.add(
+            ProductModel.fromJson(
+              jsonEncode(
+                jsonDecode(response.body)[i],
+              ),
+            ),
+          );
+        }
+        return Right(productList);
+      } else {
+        debugPrint(response.statusCode.toString());
+        return Left(ServerFailure(message: getError(response)));
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+      return Left(ServerFailure(message: e.toString()));
+    }
+  }*/
   @override
   Future<Either<Failure, List<ProductModel>>> fetchAllProducts(
       String token) async {
@@ -99,7 +133,6 @@ class AdminServicesDataSourceImpl extends AdminServicesDataSource {
       return Left(ServerFailure(message: e.toString()));
     }
   }
-
   @override
   Future<Either<Failure, String>> deleteProduct(
       String token, ProductModel productModel) async {
@@ -176,6 +209,39 @@ class AdminServicesDataSourceImpl extends AdminServicesDataSource {
       if (response.statusCode == 200) {
         debugPrint(response.statusCode.toString());
         return const Right(GlobalVariables.orderStatusSuccess);
+      } else {
+        debugPrint(response.statusCode.toString());
+        return Left(ServerFailure(message: getError(response)));
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+      return Left(ServerFailure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Earning>> getEarnings(String token) async {
+    List<Sales> sales = [];
+    int totalEarning = 0;
+    try {
+      http.Response response  = await http
+          .get(Uri.parse('${GlobalVariables.uri}/admin/analytics'), headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'x-auth-token': token,
+      });
+
+      if (response.statusCode == 200) {
+        debugPrint(response.statusCode.toString());
+        var responseTwo = jsonDecode(response.body);
+        totalEarning = responseTwo['totalEarnings'];
+        sales = [
+          Sales(GlobalVariables.mobiles, responseTwo['mobileEarnings']),
+          Sales(GlobalVariables.essentials, responseTwo['essentialEarnings']),
+          Sales(GlobalVariables.books, responseTwo['booksEarnings']),
+          Sales(GlobalVariables.appliances, responseTwo['applianceEarnings']),
+          Sales(GlobalVariables.fashion, responseTwo['fashionEarnings']),
+        ];
+        return Right(Earning(sales: sales,totalEarning: totalEarning));
       } else {
         debugPrint(response.statusCode.toString());
         return Left(ServerFailure(message: getError(response)));

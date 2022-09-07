@@ -102,7 +102,6 @@ class HomeScreen extends StatelessWidget {
             TopCategories(),
             SizedBox(height: 10),
             CarouselImage(),
-            //  DealOfDay(),
             BlocProvider<HomeServicesCubit>(
               create: (_) => home.home<HomeServicesCubit>()
                 ..fetchDealsOfTheDay(

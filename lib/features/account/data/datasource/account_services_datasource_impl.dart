@@ -4,6 +4,7 @@ import 'package:amazon_clone/constants/global_variables.dart';
 import 'package:amazon_clone/features/admin/data/model/order_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../base/error/error_handaling.dart';
 import '../../../../base/error/failures.dart';
 import 'account_services_datasource.dart';
@@ -36,6 +37,19 @@ class AccountServicesDataSourceImpl extends AccountServicesDataSource {
     } catch (e) {
       debugPrint(e.toString());
       return Left(ServerFailure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> logOut() async {
+    try {
+      SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
+      await sharedPreferences.setString('x-auth-token', '');
+      return Future.value(const Right(GlobalVariables.logOutSuccess));
+    } catch (e) {
+      debugPrint(e.toString());
+      return Future.value(Left(FailureMessage(message: e.toString())));
     }
   }
 }

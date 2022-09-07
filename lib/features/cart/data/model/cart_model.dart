@@ -19,4 +19,12 @@ class CartModel extends CartEntity {
         quantity: this.quantity ?? quantity,
         productEntity: this.productEntity ?? productEntity);
   }
+
+  Map<String, dynamic> toMap() {
+    ProductModel productModel =productEntity as ProductModel;
+    return {
+      'quantity': quantity,
+      'product': productModel.toMap(),
+    };
+  }
 }

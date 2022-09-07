@@ -76,51 +76,53 @@ class CartProduct extends StatelessWidget {
                           height: 135,
                           width: 135,
                         ),
-                        Column(
-                          children: [
-                            Container(
-                              width: 235,
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: Text(
-                                state
-                                    .userEntity.cart![index].productEntity!.name
-                                    .toString(),
-                                style: const TextStyle(
-                                  fontSize: 16,
+                        Expanded(
+                          child: Column(
+                            children: [
+                              Container(
+                                width: 235,
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                child: Text(
+                                  state
+                                      .userEntity.cart![index].productEntity!.name
+                                      .toString(),
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                  ),
+                                  maxLines: 2,
                                 ),
-                                maxLines: 2,
                               ),
-                            ),
-                            Container(
-                              width: 235,
-                              padding: const EdgeInsets.only(left: 10, top: 5),
-                              child: Text(
-                                '\$${state.userEntity.cart![index].productEntity!.price}',
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
+                              Container(
+                                width: 235,
+                                padding: const EdgeInsets.only(left: 10, top: 5),
+                                child: Text(
+                                  '\$${state.userEntity.cart![index].productEntity!.price}',
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  maxLines: 2,
                                 ),
-                                maxLines: 2,
                               ),
-                            ),
-                            Container(
-                              width: 235,
-                              padding: const EdgeInsets.only(left: 10),
-                              child: const Text(GlobalVariables.freeShipping),
-                            ),
-                            Container(
-                              width: 235,
-                              padding: const EdgeInsets.only(left: 10, top: 5),
-                              child: const Text(
-                                GlobalVariables.inStock,
-                                style: TextStyle(
-                                  color: Colors.teal,
+                              Container(
+                                width: 235,
+                                padding: const EdgeInsets.only(left: 10),
+                                child: const Text(GlobalVariables.freeShipping),
+                              ),
+                              Container(
+                                width: 235,
+                                padding: const EdgeInsets.only(left: 10, top: 5),
+                                child: const Text(
+                                  GlobalVariables.inStock,
+                                  style: TextStyle(
+                                    color: Colors.teal,
+                                  ),
+                                  maxLines: 2,
                                 ),
-                                maxLines: 2,
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ],
                     ),
